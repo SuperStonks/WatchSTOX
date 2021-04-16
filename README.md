@@ -97,7 +97,7 @@ Optional:
    | objectId      | String   | unique id for the user's watchlist (default field) |
    | author        | Pointer to User| watchlist author |
    | symbolsList       | String   | string of symbols seprated by commas |
-   | watchCount | Number   | number of comments that has been posted to an image |
+   | watchCount | Number   | number of symbols that has been added to symbolsList |
    | createdAt     | DateTime | date when watchlist is created (default field) |
    | updatedAt     | DateTime | date when watchlist is last updated (default field) |
 ### Networking
@@ -154,6 +154,7 @@ Optional:
 			
 			
 			query["symbolsList"] = watchlistSymbols
+			query["watchCount"] = query["watchCount"] - 1
 			
 			watchlist.saveInBackground { (success, error) in
 				if success { 
