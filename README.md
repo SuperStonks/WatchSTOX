@@ -89,10 +89,111 @@ Optional:
 ### [BONUS] Interactive Prototype
 
 ## Schema 
-[This section will be completed in Unit 9]
 ### Models
-[Add table of models]
+#### Watchlist
+
+   | Property      | Type     | Description |
+   | ------------- | -------- | ------------|
+   | objectId      | String   | unique id for the user's watchlist (default field) |
+   | author        | Pointer to User| watchlist author |
+   | symbolsList       | String   | string of symbols seprated by commas |
+   | watchCount | Number   | number of comments that has been posted to an image |
+   | createdAt     | DateTime | date when watchlist is created (default field) |
+   | updatedAt     | DateTime | date when watchlist is last updated (default field) |
 ### Networking
-- [Add list of network requests by screen ]
-- [Create basic snippets for each Parse network request]
-- [OPTIONAL: List endpoints if using existing API such as Yelp]
+#### List of network requests by screen
+   - Home/Watch-list Screen
+      - (Read/GET) Query all stocks where in a user's watch-list
+         ```swift
+         let query = PFQuery(className:"Watchlist")
+         query.whereKey("author", equalTo: currentUser)
+		 
+         query.findObjectsInBackground { (watchlist: [PFObject]?, error: Error?) in
+            if let error = error { 
+               print(error.localizedDescription)
+            } else if let watchlist = watchlist {
+               print("Successfully retrieved watchlist.")
+           	// TODO: Parse the string symbolsList by delimiter (,)
+
+            }
+         }
+         ```
+      - (Create/POST) Auto creates a new watchlist for your profile/user
+	     ```swift
+         let watchlist = PFQuery(className:"Watchlist")
+		 watchlist["symbolsList"] = ""
+		 watchlist["author"] = PFUser.current()! 
+		 watchlist["watchCount"] = 0 
+		 
+		 watchlist.saveInBackground { (success, error) in
+            if success { 
+               print("Watchlist created")
+            } else {
+               print("Error creating watchlist")
+            }
+         }
+         ```
+      - (Update/PUT) Delete existing stock on your watchlist
+         ```swift
+         let query = PFQuery(className:"Watchlist")
+         query.whereKey("author", equalTo: currentUser)
+		 
+		 // Select symbol to be removed could possibly be a button input
+		 let toBeRemoved = selectedSymbol 
+		 
+         query.findObjectsInBackground { (watchlist: [PFObject]?, error: Error?) in
+            if let error = error {
+               print(error.localizedDescription)
+            } else if let watchlist = watchlist {
+               print("Successfully retrieved watchlist.")
+			
+			let watchlistSymbols = query["symbolsList"]
+			
+           	// TODO: Parse the string symbolsList by delimiter (,) and remove symbol
+			// returns: String ---> with updated watchlistSymbols
+			
+			
+			query["symbolsList"] = watchlistSymbols
+			
+			watchlist.saveInBackground { (success, error) in
+				if success { 
+						print("Watchlist saved")
+					} else {
+						print("Error saving watchlist")
+					}
+				}
+            }
+         }
+         ```
+   - Stock Search Screen
+      - (Read/GET) Get various stock objects
+		 ```swift
+		 let url = URL(String: "https://sandbox.iexapis.com/stable/stock/\(symbol)/chart/1/?token=\(APIKey)")
+         let request = URLRequest(url: url, cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: 10)
+		 request.httpMethod = "GET"
+         let session = URLSession(configuration: .default, delegate: nil, delegateQueue: OperationQueue.main)
+		 let task = session.dataTask(with: request) { (data, response, error) in 
+			if let error = error {
+				print(error.localizedDescription)
+			} else if let data = data {
+				let dataDictionary = try! JSONSerialization.jsonObject(with: data, options: []) as? [[String: Any]]
+				
+				// TODO: Do something with stock data	
+			}
+		 }
+         ```
+   - Settings Screen
+      - (Read/GET) Query logged in user object
+      - (Update/PUT) Update user password/email
+#### [OPTIONAL:] Existing API Endpoints
+##### An API Of Stocks
+- Base URL - [https://sandbox.iexapis.com/](https://sandbox.iexapis.com/)
+
+   HTTP Verb | Endpoint | Description
+   ----------|----------|------------
+    `GET`    | /stable/stock/{symbol}/chart/1/?token={token} | return the chart of stock for today
+    `GET`    | /stock/{symbol}/batch/?token={token} | get quote, news, chart of symbol
+    `GET`    | /search/{fragment}/?token={token} | returns the top 10 matches of the symbol
+    `GET`    | /stock/{symbol}/company/?token={token}   | get company of stock
+    `GET`    | /stock/{symbol}/price/?token={token} | return price by stock symbol
+	
