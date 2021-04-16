@@ -187,7 +187,7 @@ Optional:
       - (Read/GET) Query logged in user object
       - (Update/PUT) Update user password/email
 #### [OPTIONAL:] Existing API Endpoints
-##### An API Of Stocks
+##### IEX Cloud API
 - Base URL - [https://sandbox.iexapis.com/](https://sandbox.iexapis.com/)
 
    HTTP Verb | Endpoint | Description
