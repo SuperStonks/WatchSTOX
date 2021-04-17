@@ -3,18 +3,23 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		27C970E82629E45B00A3F5F1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27C970E72629E45B00A3F5F1 /* AppDelegate.swift */; };
 		27C970EA2629E45B00A3F5F1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27C970E92629E45B00A3F5F1 /* SceneDelegate.swift */; };
-		27C970EC2629E45B00A3F5F1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27C970EB2629E45B00A3F5F1 /* ViewController.swift */; };
 		27C970EF2629E45B00A3F5F1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 27C970ED2629E45B00A3F5F1 /* Main.storyboard */; };
 		27C970F12629E45F00A3F5F1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 27C970F02629E45F00A3F5F1 /* Assets.xcassets */; };
 		27C970F42629E45F00A3F5F1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 27C970F22629E45F00A3F5F1 /* LaunchScreen.storyboard */; };
 		27C970FF2629E46000A3F5F1 /* WatchSTOXTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27C970FE2629E46000A3F5F1 /* WatchSTOXTests.swift */; };
 		27C9710A2629E46000A3F5F1 /* WatchSTOXUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27C971092629E46000A3F5F1 /* WatchSTOXUITests.swift */; };
+		66D7B43996C9BF6EA2D6DFD1 /* Pods_WatchSTOX_WatchSTOXUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D431EDFB3409BD9F67F12314 /* Pods_WatchSTOX_WatchSTOXUITests.framework */; };
+		793C0CAC262B8D5300E8F024 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 793C0CAB262B8D5300E8F024 /* LoginViewController.swift */; };
+		793C0CB6262B990900E8F024 /* StocksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 793C0CB5262B990900E8F024 /* StocksViewController.swift */; };
+		793C0CBE262B9BFA00E8F024 /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 793C0CBD262B9BFA00E8F024 /* FeedViewController.swift */; };
+		8E62EB68AC9026A5939D2A27 /* Pods_WatchSTOX.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A3E5AD23F6D75B740045ED7 /* Pods_WatchSTOX.framework */; };
+		A82AB93C9A7796D6484F907A /* Pods_WatchSTOXTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 725D11C18D730840E6842C20 /* Pods_WatchSTOXTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,10 +40,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		01644A19C8D46AB6165706F2 /* Pods-WatchSTOX.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WatchSTOX.debug.xcconfig"; path = "Target Support Files/Pods-WatchSTOX/Pods-WatchSTOX.debug.xcconfig"; sourceTree = "<group>"; };
 		27C970E42629E45B00A3F5F1 /* WatchSTOX.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WatchSTOX.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		27C970E72629E45B00A3F5F1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		27C970E92629E45B00A3F5F1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		27C970EB2629E45B00A3F5F1 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		27C970EE2629E45B00A3F5F1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		27C970F02629E45F00A3F5F1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		27C970F32629E45F00A3F5F1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -49,6 +54,17 @@
 		27C971052629E46000A3F5F1 /* WatchSTOXUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WatchSTOXUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		27C971092629E46000A3F5F1 /* WatchSTOXUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchSTOXUITests.swift; sourceTree = "<group>"; };
 		27C9710B2629E46000A3F5F1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3A3E5AD23F6D75B740045ED7 /* Pods_WatchSTOX.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WatchSTOX.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		400A619AD9A35965E369F856 /* Pods-WatchSTOXTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WatchSTOXTests.debug.xcconfig"; path = "Target Support Files/Pods-WatchSTOXTests/Pods-WatchSTOXTests.debug.xcconfig"; sourceTree = "<group>"; };
+		56D6E63B0AE99C1CCFCBB55D /* Pods-WatchSTOX-WatchSTOXUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WatchSTOX-WatchSTOXUITests.debug.xcconfig"; path = "Target Support Files/Pods-WatchSTOX-WatchSTOXUITests/Pods-WatchSTOX-WatchSTOXUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		725D11C18D730840E6842C20 /* Pods_WatchSTOXTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WatchSTOXTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		793C0CAB262B8D5300E8F024 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		793C0CB5262B990900E8F024 /* StocksViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StocksViewController.swift; sourceTree = "<group>"; };
+		793C0CBD262B9BFA00E8F024 /* FeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
+		D431EDFB3409BD9F67F12314 /* Pods_WatchSTOX_WatchSTOXUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WatchSTOX_WatchSTOXUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D61002EA59FD8564F73765A2 /* Pods-WatchSTOX-WatchSTOXUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WatchSTOX-WatchSTOXUITests.release.xcconfig"; path = "Target Support Files/Pods-WatchSTOX-WatchSTOXUITests/Pods-WatchSTOX-WatchSTOXUITests.release.xcconfig"; sourceTree = "<group>"; };
+		DC3A83D9AD2534044E6B5D2D /* Pods-WatchSTOXTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WatchSTOXTests.release.xcconfig"; path = "Target Support Files/Pods-WatchSTOXTests/Pods-WatchSTOXTests.release.xcconfig"; sourceTree = "<group>"; };
+		F1B3D32E0315B83722AEBB47 /* Pods-WatchSTOX.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WatchSTOX.release.xcconfig"; path = "Target Support Files/Pods-WatchSTOX/Pods-WatchSTOX.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +72,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8E62EB68AC9026A5939D2A27 /* Pods_WatchSTOX.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -63,6 +80,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A82AB93C9A7796D6484F907A /* Pods_WatchSTOXTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -70,6 +88,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				66D7B43996C9BF6EA2D6DFD1 /* Pods_WatchSTOX_WatchSTOXUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -83,6 +102,8 @@
 				27C970FD2629E46000A3F5F1 /* WatchSTOXTests */,
 				27C971082629E46000A3F5F1 /* WatchSTOXUITests */,
 				27C970E52629E45B00A3F5F1 /* Products */,
+				759EC0F4E9DA44655E90F10E /* Pods */,
+				EC6194F1AC5057FEC002CDA3 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -101,11 +122,13 @@
 			children = (
 				27C970E72629E45B00A3F5F1 /* AppDelegate.swift */,
 				27C970E92629E45B00A3F5F1 /* SceneDelegate.swift */,
-				27C970EB2629E45B00A3F5F1 /* ViewController.swift */,
 				27C970ED2629E45B00A3F5F1 /* Main.storyboard */,
 				27C970F02629E45F00A3F5F1 /* Assets.xcassets */,
 				27C970F22629E45F00A3F5F1 /* LaunchScreen.storyboard */,
 				27C970F52629E45F00A3F5F1 /* Info.plist */,
+				793C0CAB262B8D5300E8F024 /* LoginViewController.swift */,
+				793C0CB5262B990900E8F024 /* StocksViewController.swift */,
+				793C0CBD262B9BFA00E8F024 /* FeedViewController.swift */,
 			);
 			path = WatchSTOX;
 			sourceTree = "<group>";
@@ -128,6 +151,29 @@
 			path = WatchSTOXUITests;
 			sourceTree = "<group>";
 		};
+		759EC0F4E9DA44655E90F10E /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				01644A19C8D46AB6165706F2 /* Pods-WatchSTOX.debug.xcconfig */,
+				F1B3D32E0315B83722AEBB47 /* Pods-WatchSTOX.release.xcconfig */,
+				56D6E63B0AE99C1CCFCBB55D /* Pods-WatchSTOX-WatchSTOXUITests.debug.xcconfig */,
+				D61002EA59FD8564F73765A2 /* Pods-WatchSTOX-WatchSTOXUITests.release.xcconfig */,
+				400A619AD9A35965E369F856 /* Pods-WatchSTOXTests.debug.xcconfig */,
+				DC3A83D9AD2534044E6B5D2D /* Pods-WatchSTOXTests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		EC6194F1AC5057FEC002CDA3 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3A3E5AD23F6D75B740045ED7 /* Pods_WatchSTOX.framework */,
+				D431EDFB3409BD9F67F12314 /* Pods_WatchSTOX_WatchSTOXUITests.framework */,
+				725D11C18D730840E6842C20 /* Pods_WatchSTOXTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -135,9 +181,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 27C9710E2629E46000A3F5F1 /* Build configuration list for PBXNativeTarget "WatchSTOX" */;
 			buildPhases = (
+				933CA6D5D916049A7375476B /* [CP] Check Pods Manifest.lock */,
 				27C970E02629E45B00A3F5F1 /* Sources */,
 				27C970E12629E45B00A3F5F1 /* Frameworks */,
 				27C970E22629E45B00A3F5F1 /* Resources */,
+				B92A9EC11E303A384DC998C8 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -152,6 +200,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 27C971112629E46000A3F5F1 /* Build configuration list for PBXNativeTarget "WatchSTOXTests" */;
 			buildPhases = (
+				C8F7A3E15463C92AC056AB1C /* [CP] Check Pods Manifest.lock */,
 				27C970F62629E46000A3F5F1 /* Sources */,
 				27C970F72629E46000A3F5F1 /* Frameworks */,
 				27C970F82629E46000A3F5F1 /* Resources */,
@@ -170,9 +219,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 27C971142629E46000A3F5F1 /* Build configuration list for PBXNativeTarget "WatchSTOXUITests" */;
 			buildPhases = (
+				0FCB0E7BCA1AA5FC38EC358D /* [CP] Check Pods Manifest.lock */,
 				27C971012629E46000A3F5F1 /* Sources */,
 				27C971022629E46000A3F5F1 /* Frameworks */,
 				27C971032629E46000A3F5F1 /* Resources */,
+				7FC4356E72B4D9E19F675813 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -253,14 +304,119 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		0FCB0E7BCA1AA5FC38EC358D /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-WatchSTOX-WatchSTOXUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7FC4356E72B4D9E19F675813 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-WatchSTOX-WatchSTOXUITests/Pods-WatchSTOX-WatchSTOXUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-WatchSTOX-WatchSTOXUITests/Pods-WatchSTOX-WatchSTOXUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-WatchSTOX-WatchSTOXUITests/Pods-WatchSTOX-WatchSTOXUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		933CA6D5D916049A7375476B /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-WatchSTOX-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B92A9EC11E303A384DC998C8 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-WatchSTOX/Pods-WatchSTOX-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-WatchSTOX/Pods-WatchSTOX-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-WatchSTOX/Pods-WatchSTOX-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C8F7A3E15463C92AC056AB1C /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-WatchSTOXTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		27C970E02629E45B00A3F5F1 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				27C970EC2629E45B00A3F5F1 /* ViewController.swift in Sources */,
+				793C0CAC262B8D5300E8F024 /* LoginViewController.swift in Sources */,
 				27C970E82629E45B00A3F5F1 /* AppDelegate.swift in Sources */,
+				793C0CBE262B9BFA00E8F024 /* FeedViewController.swift in Sources */,
 				27C970EA2629E45B00A3F5F1 /* SceneDelegate.swift in Sources */,
+				793C0CB6262B990900E8F024 /* StocksViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -433,6 +589,7 @@
 		};
 		27C9710F2629E46000A3F5F1 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 01644A19C8D46AB6165706F2 /* Pods-WatchSTOX.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -451,6 +608,7 @@
 		};
 		27C971102629E46000A3F5F1 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F1B3D32E0315B83722AEBB47 /* Pods-WatchSTOX.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -469,6 +627,7 @@
 		};
 		27C971122629E46000A3F5F1 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 400A619AD9A35965E369F856 /* Pods-WatchSTOXTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -490,6 +649,7 @@
 		};
 		27C971132629E46000A3F5F1 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DC3A83D9AD2534044E6B5D2D /* Pods-WatchSTOXTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -511,6 +671,7 @@
 		};
 		27C971152629E46000A3F5F1 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 56D6E63B0AE99C1CCFCBB55D /* Pods-WatchSTOX-WatchSTOXUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -530,6 +691,7 @@
 		};
 		27C971162629E46000A3F5F1 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D61002EA59FD8564F73765A2 /* Pods-WatchSTOX-WatchSTOXUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
