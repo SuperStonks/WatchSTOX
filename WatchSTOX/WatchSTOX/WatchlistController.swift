@@ -40,11 +40,14 @@ class WatchlistController: UIViewController, UITableViewDataSource, UITableViewD
 //            self.stockList =  dataDictionary["results"] as! [[String:Any]]
 //            self.tableView.reloadData()
             self.stockList =  dataDictionary!
-            let comName = self.stockList["companyName"] as! String
+            let compName = self.stockList["companyName"] as! String
             
 //            self.tableView.reloadData()
             
-            print("Company name is:", comName)
+            print("Company name is:", compName)
+            self.watchlist.append("AAPL")
+//            self.watchlist.append("MSFT")
+//            self.watchlist.append("World")
 //            print(dataDictionary["quoteResponse"] as? Any)
             
 //            let iexRealtimePrice = dataDictionary!["iexRealtimePrice"]
@@ -65,7 +68,10 @@ class WatchlistController: UIViewController, UITableViewDataSource, UITableViewD
         tableView.delegate = self
         
         quoteDisplay(symbol: "AAPL")
-        self.tableView.reloadData()
+        quoteDisplay(symbol: "MSFT")
+        quoteDisplay(symbol: "TSLA")
+        
+//        self.tableView.reloadData()
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -77,25 +83,27 @@ class WatchlistController: UIViewController, UITableViewDataSource, UITableViewD
     // MARK: - Table view data source
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        print(stockList.count)
+        print(watchlist.count)
 //        print(stockList["companyName"])
 //        let companyName = stockList["companyName"] as! String
-        print("this is the stocklist", stockList)
+//        print("this is the stocklist", stockList)
 //        print(companyName.count)
-//        watchlist.append("Hello")
 //        self.tableView.reloadData()
         return watchlist.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "WatchlistCell") as! WatchlistCell
-//        watchlist.append("Hello")
 //        let stockDisplay = watchlist[indexPath.row]
         let companyName = stockList["companyName"] as! String
-        print(companyName)
+        let symbol = stockList["symbol"] as! String
+        let latestPrice = stockList["latestPrice"] as! NSNumber
+        print(latestPrice)
+        let latestPriceString = "\(latestPrice)"
         
         cell.companyName.text = companyName
-        
+        cell.tickerSymbol.text = symbol
+        cell.stockPrice.text = latestPriceString
         return cell
     }
     

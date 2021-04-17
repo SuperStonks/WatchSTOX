@@ -11,6 +11,8 @@ class WatchlistCell: UITableViewCell {
 
     
     @IBOutlet weak var companyName: UILabel!
+    @IBOutlet weak var tickerSymbol: UILabel!
+    @IBOutlet weak var stockPrice: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()

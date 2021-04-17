@@ -43,17 +43,41 @@
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="74"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="companyName" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yrp-Jx-m05">
-                                                    <rect key="frame" x="42" y="11" width="115" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="companyName" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yrp-Jx-m05">
+                                                    <rect key="frame" x="20" y="10" width="142" height="30"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="stockPrice" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p1Y-1h-DZl">
+                                                    <rect key="frame" x="313" y="19" width="81" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="tickerSymbol" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DLJ-Xg-TnG">
+                                                    <rect key="frame" x="25" y="33" width="132" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="DLJ-Xg-TnG" firstAttribute="leading" secondItem="cKg-ap-Wnr" secondAttribute="leading" constant="25" id="0uA-Pu-jOV"/>
+                                                <constraint firstItem="DLJ-Xg-TnG" firstAttribute="centerX" secondItem="Yrp-Jx-m05" secondAttribute="centerX" id="1iV-90-Hf5"/>
+                                                <constraint firstItem="Yrp-Jx-m05" firstAttribute="leading" secondItem="cKg-ap-Wnr" secondAttribute="leading" constant="20" id="8Yf-CF-FOE"/>
+                                                <constraint firstItem="Yrp-Jx-m05" firstAttribute="top" secondItem="cKg-ap-Wnr" secondAttribute="top" constant="10" id="B6Y-sB-pHI"/>
+                                                <constraint firstItem="p1Y-1h-DZl" firstAttribute="top" secondItem="cKg-ap-Wnr" secondAttribute="top" constant="19" id="FiR-jq-qXa"/>
+                                                <constraint firstItem="Yrp-Jx-m05" firstAttribute="centerY" secondItem="p1Y-1h-DZl" secondAttribute="centerY" constant="-4.5" id="XRy-FM-Ff9"/>
+                                                <constraint firstAttribute="bottom" secondItem="DLJ-Xg-TnG" secondAttribute="bottom" constant="20" id="cEJ-UY-ZHl"/>
+                                                <constraint firstAttribute="trailing" secondItem="p1Y-1h-DZl" secondAttribute="trailing" constant="20" id="dgE-Sh-gNO"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="p1Y-1h-DZl" secondAttribute="bottom" constant="23" id="zfB-W2-fQm"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="companyName" destination="Yrp-Jx-m05" id="TbD-Pr-HIE"/>
+                                            <outlet property="stockPrice" destination="p1Y-1h-DZl" id="6NA-qg-m3v"/>
+                                            <outlet property="tickerSymbol" destination="DLJ-Xg-TnG" id="xN4-Ae-QDm"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
