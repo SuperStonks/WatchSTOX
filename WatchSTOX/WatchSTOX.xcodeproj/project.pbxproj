@@ -15,6 +15,8 @@
 		27C970F42629E45F00A3F5F1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 27C970F22629E45F00A3F5F1 /* LaunchScreen.storyboard */; };
 		27C970FF2629E46000A3F5F1 /* WatchSTOXTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27C970FE2629E46000A3F5F1 /* WatchSTOXTests.swift */; };
 		27C9710A2629E46000A3F5F1 /* WatchSTOXUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27C971092629E46000A3F5F1 /* WatchSTOXUITests.swift */; };
+		27D229F3262B8214008DED57 /* WatchlistController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27D229F2262B8214008DED57 /* WatchlistController.swift */; };
+		27D229F8262B8254008DED57 /* WatchlistCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27D229F7262B8254008DED57 /* WatchlistCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +51,8 @@
 		27C971052629E46000A3F5F1 /* WatchSTOXUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WatchSTOXUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		27C971092629E46000A3F5F1 /* WatchSTOXUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchSTOXUITests.swift; sourceTree = "<group>"; };
 		27C9710B2629E46000A3F5F1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		27D229F2262B8214008DED57 /* WatchlistController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchlistController.swift; sourceTree = "<group>"; };
+		27D229F7262B8254008DED57 /* WatchlistCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchlistCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +110,8 @@
 				27C970F02629E45F00A3F5F1 /* Assets.xcassets */,
 				27C970F22629E45F00A3F5F1 /* LaunchScreen.storyboard */,
 				27C970F52629E45F00A3F5F1 /* Info.plist */,
+				27D229F2262B8214008DED57 /* WatchlistController.swift */,
+				27D229F7262B8254008DED57 /* WatchlistCell.swift */,
 			);
 			path = WatchSTOX;
 			sourceTree = "<group>";
@@ -261,6 +267,8 @@
 				27C970EC2629E45B00A3F5F1 /* ViewController.swift in Sources */,
 				27C970E82629E45B00A3F5F1 /* AppDelegate.swift in Sources */,
 				27C970EA2629E45B00A3F5F1 /* SceneDelegate.swift in Sources */,
+				27D229F8262B8254008DED57 /* WatchlistCell.swift in Sources */,
+				27D229F3262B8214008DED57 /* WatchlistController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
