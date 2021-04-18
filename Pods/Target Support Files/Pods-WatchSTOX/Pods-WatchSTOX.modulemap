@@ -1,0 +1,6 @@
+framework module Pods_WatchSTOX {
+  umbrella header "Pods-WatchSTOX-umbrella.h"
+
+  export *
+  module * { export * }
+}
