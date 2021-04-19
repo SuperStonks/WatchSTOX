@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ypP-55-Xzx">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
@@ -80,7 +80,7 @@
             </objects>
             <point key="canvasLocation" x="-197" y="-45"/>
         </scene>
-        <!--View Controller-->
+        <!--Setting-->
         <scene sceneID="cYp-gI-lfK">
             <objects>
                 <viewController id="k8M-xm-5gy" sceneMemberID="viewController">
@@ -90,7 +90,7 @@
                         <viewLayoutGuide key="safeArea" id="gPK-gk-WQM"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <navigationItem key="navigationItem" id="cQ2-Id-fGi">
+                    <navigationItem key="navigationItem" title="Setting" id="cQ2-Id-fGi">
                         <barButtonItem key="leftBarButtonItem" title="Logout" id="chm-Cr-BQY"/>
                     </navigationItem>
                 </viewController>
@@ -98,7 +98,7 @@
             </objects>
             <point key="canvasLocation" x="1084" y="2342"/>
         </scene>
-        <!--View Controller-->
+        <!--Search-->
         <scene sceneID="LNV-tJ-EUG">
             <objects>
                 <viewController id="jrA-as-1Nj" sceneMemberID="viewController">
@@ -108,7 +108,7 @@
                         <viewLayoutGuide key="safeArea" id="8U2-x7-4Ks"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <navigationItem key="navigationItem" id="XW1-oS-N1s">
+                    <navigationItem key="navigationItem" title="Search" id="XW1-oS-N1s">
                         <barButtonItem key="leftBarButtonItem" title="Logout" id="nJe-93-zQn"/>
                     </navigationItem>
                 </viewController>
@@ -116,7 +116,7 @@
             </objects>
             <point key="canvasLocation" x="-197" y="2342"/>
         </scene>
-        <!--Watchlist View Controller-->
+        <!--Watchlist-->
         <scene sceneID="pwX-Ye-hBP">
             <objects>
                 <viewController storyboardIdentifier="WatchlistViewController" id="BAj-HJ-Tdk" customClass="WatchlistViewController" customModule="WatchSTOX" customModuleProvider="target" sceneMemberID="viewController">
@@ -179,7 +179,7 @@
                         <viewLayoutGuide key="safeArea" id="y2T-GM-E4K"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <navigationItem key="navigationItem" id="s4S-hb-Vsn">
+                    <navigationItem key="navigationItem" title="Watchlist" id="s4S-hb-Vsn">
                         <barButtonItem key="leftBarButtonItem" title="Logout" id="mG1-Pq-fbI">
                             <connections>
                                 <action selector="onLogoutButton:" destination="BAj-HJ-Tdk" id="t5Z-4M-26Q"/>
@@ -218,7 +218,7 @@
         <scene sceneID="j91-TL-Sne">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" modalPresentationStyle="fullScreen" id="Rij-iH-vAF" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Watchlist" id="PlS-Wc-kom"/>
+                    <tabBarItem key="tabBarItem" title="Watchlist" image="eye" catalog="system" id="PlS-Wc-kom"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="ang-kt-Nbo">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -237,7 +237,7 @@
         <scene sceneID="y8t-3k-XLQ">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" modalPresentationStyle="fullScreen" id="OqV-A0-xW0" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Search" id="drg-b3-r2q"/>
+                    <tabBarItem key="tabBarItem" title="Search" image="magnifyingglass" catalog="system" id="drg-b3-r2q"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="lfJ-ZV-aDG">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -256,7 +256,7 @@
         <scene sceneID="DaW-6K-vSb">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" modalPresentationStyle="fullScreen" id="Wub-dj-dEJ" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Settings" springLoaded="YES" id="rnS-jd-dcn"/>
+                    <tabBarItem key="tabBarItem" title="Settings" image="gearshape" catalog="system" springLoaded="YES" id="rnS-jd-dcn"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="a5p-iF-Y9u">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -273,6 +273,9 @@
         </scene>
     </scenes>
     <resources>
+        <image name="eye" catalog="system" width="128" height="81"/>
+        <image name="gearshape" catalog="system" width="128" height="121"/>
+        <image name="magnifyingglass" catalog="system" width="128" height="115"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

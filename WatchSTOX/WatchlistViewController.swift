@@ -49,12 +49,12 @@ class WatchlistViewController: UIViewController, UITableViewDataSource, UITableV
 //            self.tableView.reloadData()
             let query = dataDictionary!
             
-            print("Company name is:", query["companyName"] as Any)
-            print(dataDictionary as Any)
+            print("Company name is:", query["companyName"] as! String)
+            print(dataDictionary!)
             print(type(of: dataDictionary))
             self.watchlist.append(symbol)
             print("hello")
-            print(self.watchlist as Any)
+            print(self.watchlist)
             print(self.stockList)
 //            self.watchlist.append("MSFT")
 //            self.watchlist.append("World")
@@ -113,7 +113,7 @@ class WatchlistViewController: UIViewController, UITableViewDataSource, UITableV
     // MARK: - Table view data source
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print(watchlist.count)
+        print("Watchlist count is:", watchlist.count)
 //        print(stockList["companyName"])
 //        let companyName = stockList["companyName"] as! String
 //        print("this is the stocklist", stockList)
@@ -131,7 +131,7 @@ class WatchlistViewController: UIViewController, UITableViewDataSource, UITableV
         let companyName = stock["companyName"] as! String
         let symbol = stock["symbol"] as! String
         let latestPrice = stock["latestPrice"] as! NSNumber
-        print(latestPrice)
+        print("latestPrice:", latestPrice)
         let latestPriceString = "\(latestPrice)"
             
         cell.companyName.text = companyName
