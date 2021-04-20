@@ -7,6 +7,7 @@ target 'WatchSTOX' do
 
   # Pods for WatchSTOX
   pod 'Parse'
+  pod 'AlamofireImage'
 
   target 'WatchSTOXTests' do
     inherit! :search_paths

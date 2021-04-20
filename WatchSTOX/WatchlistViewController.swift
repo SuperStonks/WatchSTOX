@@ -10,21 +10,23 @@ import Parse
 
 class WatchlistViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
+//
+//        https://cloud.iexapis.com/stable/stock/XOM/quote?token=YOUR_TOKEN_HERE
+//        Using sandbox api: https://sandbox.iexapis.com/
+//        Quote: GET /stock/{symbol}/quote/{field}
+//        Logo: GET  /stock/{symbol}/logo
+//
+    
     @IBOutlet weak var tableView: UITableView!
     
     var watchlist = [String]()
-//    var stockList = [String:Any]()
     var stockList = [[String:Any]]()
-
     
     let IEXApiKey = "Tpk_1bae23b220964b8c8042c12c06d4e84c"
     
+    
     func quoteDisplay(symbol: String) {
-//        Using sandbox api: https://sandbox.iexapis.com/
-//        Quote: /stock/{symbol}/quote/{field}
-//        https://cloud.iexapis.com/stable/stock/XOM/quote?token=YOUR_TOKEN_HERE
 
-        
         let url = URL(string: "https://sandbox.iexapis.com/stable/stock/\(symbol)/quote?token=\(IEXApiKey)")!
 //        let url = URL(string: "https://sandbox.iexapis.com/stable/stock/AAPL/chart/1y?token=\(IEXApiKey)")!
 //        /stock/{symbol}/chart/{range}/{date}
@@ -44,34 +46,61 @@ class WatchlistViewController: UIViewController, UITableViewDataSource, UITableV
 //            self.tableView.reloadData()
 //            self.stockList = dataDictionary!
 //            let compName = self.stockList["companyName"] as! String
-            self.stockList.append(dataDictionary!)
 //            let count = self.stockList.count - 1
 //            self.tableView.reloadData()
+            self.stockList.append(dataDictionary!)
+
+
             let query = dataDictionary!
+//            print("Company name is:", query["companyName"] as! String)
+//            print(dataDictionary!)
+//            print(type(of: dataDictionary))
             
-            print("Company name is:", query["companyName"] as! String)
-            print(dataDictionary!)
-            print(type(of: dataDictionary))
-            self.watchlist.append(symbol)
-            print("hello")
-            print(self.watchlist)
-            print(self.stockList)
+//            print("hello")
+//            print(self.watchlist)
+//            print(self.stockList)
 //            self.watchlist.append("MSFT")
 //            self.watchlist.append("World")
 //            print(dataDictionary["quoteResponse"] as? Any)
             
 //            let iexRealtimePrice = dataDictionary!["iexRealtimePrice"]
 //            print("This is the realtime random quote: $", iexRealtimePrice as! NSNumber)
-//
 //            let result = quoteResponse["result"] as! [[String:Any]]
 //            print(result[0]["quoteSummary"])
+            
+            self.watchlist.append(symbol)
+            print(self.watchlist)
+            
+            self.logoDisplay(symbol: symbol)
             self.tableView.reloadData()
            }
         }
         task.resume()
     }
     
-    
+    func logoDisplay(symbol: String) {
+        
+        let url = URL(string: "https://sandbox.iexapis.com/stable/stock/\(symbol)/logo?token=\(IEXApiKey)")!
+        var request = URLRequest(url: url, cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: 10)
+        request.httpMethod = "GET"
+        let session = URLSession(configuration: .default, delegate: nil, delegateQueue: OperationQueue.main)
+        let task = session.dataTask(with: request) { (data, response, error) in
+           // This will run when the network request returns
+           if let error = error {
+              print(error.localizedDescription)
+           } else if let data = data {
+            
+            let dataDictionary = try! JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
+            let logo = dataDictionary!["url"] as! String
+            
+            print(logo)
+
+        
+            self.tableView.reloadData()
+           }
+        }
+        task.resume()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -82,6 +111,7 @@ class WatchlistViewController: UIViewController, UITableViewDataSource, UITableV
         quoteDisplay(symbol: "AAPL")
         quoteDisplay(symbol: "TSLA")
         quoteDisplay(symbol: "MSFT")
+//        logoDisplay(symbol: "AAPL")
         
         self.tableView.reloadData()
 
@@ -113,7 +143,7 @@ class WatchlistViewController: UIViewController, UITableViewDataSource, UITableV
     // MARK: - Table view data source
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print("Watchlist count is:", watchlist.count)
+//        print("Watchlist count is:", watchlist.count)
 //        print(stockList["companyName"])
 //        let companyName = stockList["companyName"] as! String
 //        print("this is the stocklist", stockList)
@@ -131,7 +161,7 @@ class WatchlistViewController: UIViewController, UITableViewDataSource, UITableV
         let companyName = stock["companyName"] as! String
         let symbol = stock["symbol"] as! String
         let latestPrice = stock["latestPrice"] as! NSNumber
-        print("latestPrice:", latestPrice)
+//        print("latestPrice:", latestPrice)
         let latestPriceString = "\(latestPrice)"
             
         cell.companyName.text = companyName
