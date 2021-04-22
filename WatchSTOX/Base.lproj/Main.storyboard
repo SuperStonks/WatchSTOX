@@ -154,6 +154,10 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UX6-6y-Rrt">
+                                                    <rect key="frame" x="215" y="0.0" width="90" height="74"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                </imageView>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="hfn-wi-QOc" firstAttribute="leading" secondItem="EGs-nE-XQ4" secondAttribute="leading" constant="25" id="3R7-fp-rN8"/>
@@ -163,12 +167,13 @@
                                                 <constraint firstItem="wiI-bn-Dzm" firstAttribute="top" secondItem="EGs-nE-XQ4" secondAttribute="top" constant="10" id="ge3-ac-Pw4"/>
                                                 <constraint firstAttribute="bottom" secondItem="hfn-wi-QOc" secondAttribute="bottom" constant="20" id="knU-ld-Mqc"/>
                                                 <constraint firstItem="pvN-bM-Rvj" firstAttribute="top" secondItem="EGs-nE-XQ4" secondAttribute="top" constant="19" id="ltx-Dg-hrk"/>
-                                                <constraint firstItem="pvN-bM-Rvj" firstAttribute="leading" secondItem="wiI-bn-Dzm" secondAttribute="trailing" constant="151" id="r4A-ck-R2o"/>
+                                                <constraint firstAttribute="trailing" secondItem="pvN-bM-Rvj" secondAttribute="trailing" constant="20" id="oot-h5-3hW"/>
                                                 <constraint firstItem="wiI-bn-Dzm" firstAttribute="leading" secondItem="EGs-nE-XQ4" secondAttribute="leading" constant="20" id="ynT-6H-aAo"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="companyName" destination="wiI-bn-Dzm" id="dFc-rJ-4tQ"/>
+                                            <outlet property="logoView" destination="UX6-6y-Rrt" id="YLg-HH-adh"/>
                                             <outlet property="stockPrice" destination="pvN-bM-Rvj" id="ya0-fV-kPK"/>
                                             <outlet property="tickerSymbol" destination="hfn-wi-QOc" id="4aP-qI-oki"/>
                                         </connections>

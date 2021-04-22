@@ -7,6 +7,7 @@
 
 import UIKit
 import Parse
+import AlamofireImage
 
 class WatchlistViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
@@ -69,7 +70,7 @@ class WatchlistViewController: UIViewController, UITableViewDataSource, UITableV
 //            print(result[0]["quoteSummary"])
             
             self.watchlist.append(symbol)
-            print(self.watchlist)
+//            print(self.watchlist)
             
             self.logoDisplay(symbol: symbol)
             self.tableView.reloadData()
@@ -91,11 +92,18 @@ class WatchlistViewController: UIViewController, UITableViewDataSource, UITableV
            } else if let data = data {
             
             let dataDictionary = try! JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
-            let logo = dataDictionary!["url"] as! String
+            var logoPath = dataDictionary!["url"] as! String
+            logoPath = "https://storage.googleapis.com/iex/api/logos/\(symbol).png"
             
-            print(logo)
+            print("logoPath:", logoPath)
+            
+            let logoURL = URL(string: logoPath)
+            print("logoURL:", logoURL!)
+            
+            
+            let cell = self.tableView.dequeueReusableCell(withIdentifier: "WatchlistCell") as! WatchlistCell
+            cell.logoView.af.setImage(withURL: logoURL!)
 
-        
             self.tableView.reloadData()
            }
         }
@@ -108,9 +116,16 @@ class WatchlistViewController: UIViewController, UITableViewDataSource, UITableV
         tableView.dataSource = self
         tableView.delegate = self
         
-        quoteDisplay(symbol: "AAPL")
-        quoteDisplay(symbol: "TSLA")
-        quoteDisplay(symbol: "MSFT")
+        let stockArray = ["AAPL", "MSFT", "TSLA"]
+
+        for stock in stockArray {
+            quoteDisplay(symbol: stock)
+        }
+        
+//        quoteDisplay(symbol: "AAPL")
+//        quoteDisplay(symbol: "TSLA")
+//        quoteDisplay(symbol: "MSFT")
+//        quoteDisplay(symbol: "AMZN")
 //        logoDisplay(symbol: "AAPL")
         
         self.tableView.reloadData()
@@ -161,7 +176,6 @@ class WatchlistViewController: UIViewController, UITableViewDataSource, UITableV
         let companyName = stock["companyName"] as! String
         let symbol = stock["symbol"] as! String
         let latestPrice = stock["latestPrice"] as! NSNumber
-//        print("latestPrice:", latestPrice)
         let latestPriceString = "\(latestPrice)"
             
         cell.companyName.text = companyName
