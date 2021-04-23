@@ -99,6 +99,7 @@ class WatchlistViewController: UIViewController, UITableViewDataSource, UITableV
             
             let logoURL = URL(string: logoPath)
             print("logoURL:", logoURL!)
+            print(type(of: logoURL))
             
             
             let cell = self.tableView.dequeueReusableCell(withIdentifier: "WatchlistCell") as! WatchlistCell
@@ -116,7 +117,7 @@ class WatchlistViewController: UIViewController, UITableViewDataSource, UITableV
         tableView.dataSource = self
         tableView.delegate = self
         
-        let stockArray = ["AAPL", "MSFT", "TSLA"]
+        let stockArray = ["AAPL", "MSFT", "TSLA", "JBLU", "AMZN", "AA", "RIOT"]
 
         for stock in stockArray {
             quoteDisplay(symbol: stock)
