@@ -181,6 +181,14 @@ class WatchlistViewController: UIViewController, UITableViewDataSource, UITableV
         cell.companyName.text = companyName
         cell.tickerSymbol.text = symbol
         cell.stockPrice.text = latestPriceString
+        
+        let logoPath = "https://storage.googleapis.com/iex/api/logos/\(symbol).png"
+        
+        print("logoPath:", logoPath)
+        
+        let logoURL = URL(string: logoPath)
+        cell.logoView.af_setImage(withURL: logoURL!)
+
             
         return cell
 
