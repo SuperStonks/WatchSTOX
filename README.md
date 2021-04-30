@@ -41,7 +41,7 @@ and the fake portfolio changes with real time stock exchange prices.
 
 * [X] User can sign up and login 
 * [X] User stays logged in
-* [X] User can change password
+* [ ] User can change password
 * [ ] User can search for stocks
 * [ ] User can filter through certain stocks
 * [ ] User can add stocks to be placed on a watchlist
@@ -49,6 +49,7 @@ and the fake portfolio changes with real time stock exchange prices.
 * [ ] User can look at detailed stock information
 * [X] User can change to Dark Mode
 * [X] User can disable/enable notifications
+* [ ] User can receive notifications
 
 **Optional Nice-to-have Stories**
 
