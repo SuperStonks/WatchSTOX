@@ -23,93 +23,67 @@ class WatchlistViewController: UIViewController, UITableViewDataSource, UITableV
     var watchlist = [String]()
     var stockList = [[String:Any]]()
     
-    let IEXApiKey = "Tpk_1bae23b220964b8c8042c12c06d4e84c"
-    
+    let IEXApiKey: String = "Tpk_1bae23b220964b8c8042c12c06d4e84c"
+    let BASE_URL: String = "https://sandbox.iexapis.com/stable/stock"
     
     func quoteDisplay(symbol: String) {
 
-        let url = URL(string: "https://sandbox.iexapis.com/stable/stock/\(symbol)/quote?token=\(IEXApiKey)")!
-//        let url = URL(string: "https://sandbox.iexapis.com/stable/stock/AAPL/chart/1y?token=\(IEXApiKey)")!
-//        /stock/{symbol}/chart/{range}/{date}
+        let url = URL(string: "\(BASE_URL)/\(symbol)/quote?token=\(self.IEXApiKey)")!
         var request = URLRequest(url: url, cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: 10)
         request.httpMethod = "GET"
         let session = URLSession(configuration: .default, delegate: nil, delegateQueue: OperationQueue.main)
-        let task = session.dataTask(with: request) { (data, response, error) in
+        let task = session.dataTask(with: request) { [self] (data, response, error) in
            // This will run when the network request returns
            if let error = error {
               print(error.localizedDescription)
            } else if let data = data {
             
-//            let decodedApps = try JSONDecoder().decode(class.self, from: data!)
               let dataDictionary = try! JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
-            
-//            self.stockList =  dataDictionary["results"] as! [[String:Any]]
-//            self.tableView.reloadData()
-//            self.stockList = dataDictionary!
-//            let compName = self.stockList["companyName"] as! String
-//            let count = self.stockList.count - 1
-//            self.tableView.reloadData()
             self.stockList.append(dataDictionary!)
 
 
-            let query = dataDictionary!
-//            print("Company name is:", query["companyName"] as! String)
-//            print(dataDictionary!)
-//            print(type(of: dataDictionary))
-            
-//            print("hello")
-//            print(self.watchlist)
-//            print(self.stockList)
-//            self.watchlist.append("MSFT")
-//            self.watchlist.append("World")
-//            print(dataDictionary["quoteResponse"] as? Any)
-            
-//            let iexRealtimePrice = dataDictionary!["iexRealtimePrice"]
-//            print("This is the realtime random quote: $", iexRealtimePrice as! NSNumber)
-//            let result = quoteResponse["result"] as! [[String:Any]]
-//            print(result[0]["quoteSummary"])
-            
+//            let query = dataDictionary!
+
             self.watchlist.append(symbol)
-//            print(self.watchlist)
             
-            self.logoDisplay(symbol: symbol)
+//            self.logoDisplay(symbol: symbol)
             self.tableView.reloadData()
            }
         }
         task.resume()
     }
     
-    func logoDisplay(symbol: String) {
-        
-        let url = URL(string: "https://sandbox.iexapis.com/stable/stock/\(symbol)/logo?token=\(IEXApiKey)")!
-        var request = URLRequest(url: url, cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: 10)
-        request.httpMethod = "GET"
-        let session = URLSession(configuration: .default, delegate: nil, delegateQueue: OperationQueue.main)
-        let task = session.dataTask(with: request) { (data, response, error) in
-           // This will run when the network request returns
-           if let error = error {
-              print(error.localizedDescription)
-           } else if let data = data {
-            
-            let dataDictionary = try! JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
-            var logoPath = dataDictionary!["url"] as! String
-            logoPath = "https://storage.googleapis.com/iex/api/logos/\(symbol).png"
-            
-            print("logoPath:", logoPath)
-            
-            let logoURL = URL(string: logoPath)
-            print("logoURL:", logoURL!)
-            print(type(of: logoURL))
-            
-            
-            let cell = self.tableView.dequeueReusableCell(withIdentifier: "WatchlistCell") as! WatchlistCell
-            cell.logoView.af.setImage(withURL: logoURL!)
-
-            self.tableView.reloadData()
-           }
-        }
-        task.resume()
-    }
+//    func logoDisplay(symbol: String) {
+//
+//        let url = URL(string: "\(BASE_URL)/\(symbol)/logo?token=\(IEXApiKey)")!
+//        var request = URLRequest(url: url, cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: 10)
+//        request.httpMethod = "GET"
+//        let session = URLSession(configuration: .default, delegate: nil, delegateQueue: OperationQueue.main)
+//        let task = session.dataTask(with: request) { (data, response, error) in
+//           // This will run when the network request returns
+//           if let error = error {
+//              print(error.localizedDescription)
+//           } else if let data = data {
+//
+//            let dataDictionary = try! JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
+//            var logoPath = dataDictionary!["url"] as! String
+//            logoPath = "https://storage.googleapis.com/iex/api/logos/\(symbol).png"
+//
+//            print("logoPath:", logoPath)
+//
+//            let logoURL = URL(string: logoPath)
+//            print("logoURL:", logoURL!)
+//            print(type(of: logoURL))
+//
+//
+//            let cell = self.tableView.dequeueReusableCell(withIdentifier: "WatchlistCell") as! WatchlistCell
+//            cell.logoView.af.setImage(withURL: logoURL!)
+//
+//            self.tableView.reloadData()
+//           }
+//        }
+//        task.resume()
+//    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -117,10 +91,11 @@ class WatchlistViewController: UIViewController, UITableViewDataSource, UITableV
         tableView.dataSource = self
         tableView.delegate = self
         
-        let stockArray = ["AAPL", "MSFT", "TSLA", "JBLU", "AMZN", "AA", "RIOT"]
+        let stockArray: [String] = ["AAPL", "MSFT", "TSLA", "JBLU", "AMZN", "AA"]//, "RIOT"]
 
         for stock in stockArray {
             quoteDisplay(symbol: stock)
+//            self.tableView.reloadData()
         }
         
 //        quoteDisplay(symbol: "AAPL")
@@ -129,7 +104,7 @@ class WatchlistViewController: UIViewController, UITableViewDataSource, UITableV
 //        quoteDisplay(symbol: "AMZN")
 //        logoDisplay(symbol: "AAPL")
         
-        self.tableView.reloadData()
+//        self.tableView.reloadData()
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -188,9 +163,8 @@ class WatchlistViewController: UIViewController, UITableViewDataSource, UITableV
         print("logoPath:", logoPath)
         
         let logoURL = URL(string: logoPath)
-        cell.logoView.af_setImage(withURL: logoURL!)
+        cell.logoView.af.setImage(withURL: logoURL!)
 
-            
         return cell
 
         
