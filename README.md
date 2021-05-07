@@ -29,6 +29,10 @@ we can add ways to show and analyze the stock market, i.e. which stock had the b
 further we can add a simulation tab which provides you with fake money and let's you invest as if it was real
 and the fake portfolio changes with real time stock exchange prices.
 
+### App Sprint-2 GIF
+
+* Working on sprint 2.....
+
 ### App Sprint-1 GIF
 
 ![Walkthrough](https://media2.giphy.com/media/bs1bK6DyvHZeAqC4Ye/giphy.gif?cid=790b76118c669e407e8c6a3cd65a79e2708197493cd2351d&rid=giphy.gif&ct=g)
