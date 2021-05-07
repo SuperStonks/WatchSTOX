@@ -29,23 +29,34 @@ we can add ways to show and analyze the stock market, i.e. which stock had the b
 further we can add a simulation tab which provides you with fake money and let's you invest as if it was real
 and the fake portfolio changes with real time stock exchange prices.
 
+### App Sprint-1 GIF
+
+![Walkthrough](https://media2.giphy.com/media/bs1bK6DyvHZeAqC4Ye/giphy.gif?cid=790b76118c669e407e8c6a3cd65a79e2708197493cd2351d&rid=giphy.gif&ct=g)
+
 ## Product Spec
 
 ### 1. User Stories (Required and Optional)
 
 **Required Must-have Stories**
 
-* User can log in to pick their stocks to be placed on a watch list
-* Each user can save their preferences on an account
-* User can search and look at detailed stock information
-* Settings (General, Dark Mode, Notifications, etc.)
+* [X] User can sign up and login 
+* [X] User stays logged in
+* [ ] User can change password
+* [ ] User can search for stocks
+* [ ] User can filter through certain stocks
+* [ ] User can add stocks to be placed on a watchlist
+* [ ] User can remove stocks from watchlist
+* [ ] User can look at detailed stock information
+* [X] User can change to Dark Mode
+* [X] User can disable/enable notifications
+* [ ] User can receive notifications
 
 **Optional Nice-to-have Stories**
 
-* User can see the top stock gains/losses that week
-* User can invest fake money into different stocks
-* User receives real time calculated investment earnings of said fake money
-* User can also see crypto-currency exchange
+* [ ] User can see the top stock gains/losses that week
+* [ ] User can invest fake money into different stocks
+* [ ] User receives real time calculated investment earnings of said fake money
+* [ ] User can also see crypto-currency exchange
 
 ### 2. Screen Archetypes
 
@@ -197,4 +208,4 @@ Optional:
     `GET`    | /search/{fragment}/?token={token} | returns the top 10 matches of the symbol
     `GET`    | /stock/{symbol}/company/?token={token}   | get company of stock
     `GET`    | /stock/{symbol}/price/?token={token} | return price by stock symbol
-	
+    

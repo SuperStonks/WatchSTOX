@@ -21,6 +21,9 @@
 		27548A4A262BBC3100B84E8B /* WatchSTOXTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27548A49262BBC3100B84E8B /* WatchSTOXTests.swift */; };
 		27548A55262BBC3100B84E8B /* WatchSTOXUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27548A54262BBC3100B84E8B /* WatchSTOXUITests.swift */; };
 		27B264112635B0D800633448 /* IEXStock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27B264102635B0D700633448 /* IEXStock.swift */; };
+		27582085263B6D040059FE0B /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27582084263B6D040059FE0B /* SearchViewController.swift */; };
+		2758208A263B6D280059FE0B /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27582089263B6D280059FE0B /* SettingsViewController.swift */; };
+		2758208F263B85C70059FE0B /* VerifyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2758208E263B85C60059FE0B /* VerifyViewController.swift */; };
 		781359C586C92D6249367AAD /* Pods_WatchSTOX_WatchSTOXUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 624CB18D2737011CC72B07B7 /* Pods_WatchSTOX_WatchSTOXUITests.framework */; };
 		FAE6253596B0F1B3133EFBBD /* Pods_WatchSTOX.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1AD5A7B08FE3771BF9C87CB5 /* Pods_WatchSTOX.framework */; };
 /* End PBXBuildFile section */
@@ -65,6 +68,9 @@
 		27548A54262BBC3100B84E8B /* WatchSTOXUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchSTOXUITests.swift; sourceTree = "<group>"; };
 		27548A56262BBC3100B84E8B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		27B264102635B0D700633448 /* IEXStock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IEXStock.swift; sourceTree = "<group>"; };
+		27582084263B6D040059FE0B /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		27582089263B6D280059FE0B /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		2758208E263B85C60059FE0B /* VerifyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyViewController.swift; sourceTree = "<group>"; };
 		55111405C6525C66B1092505 /* Pods-WatchSTOX-WatchSTOXUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WatchSTOX-WatchSTOXUITests.debug.xcconfig"; path = "Target Support Files/Pods-WatchSTOX-WatchSTOXUITests/Pods-WatchSTOX-WatchSTOXUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		624CB18D2737011CC72B07B7 /* Pods_WatchSTOX_WatchSTOXUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WatchSTOX_WatchSTOXUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6CD40EFFD98C29FFF79E4E73 /* Pods-WatchSTOX-WatchSTOXUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WatchSTOX-WatchSTOXUITests.release.xcconfig"; path = "Target Support Files/Pods-WatchSTOX-WatchSTOXUITests/Pods-WatchSTOX-WatchSTOXUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -138,6 +144,9 @@
 				27509C19262BCE48004D2722 /* LoginViewController.swift */,
 				27509C1E262BCED8004D2722 /* WatchlistCell.swift */,
 				27B264102635B0D700633448 /* IEXStock.swift */,
+				27582084263B6D040059FE0B /* SearchViewController.swift */,
+				27582089263B6D280059FE0B /* SettingsViewController.swift */,
+				2758208E263B85C60059FE0B /* VerifyViewController.swift */,
 			);
 			path = WatchSTOX;
 			sourceTree = "<group>";
@@ -423,12 +432,15 @@
 			files = (
 				27509C1F262BCED8004D2722 /* WatchlistCell.swift in Sources */,
 				27509C1A262BCE48004D2722 /* LoginViewController.swift in Sources */,
+				27582085263B6D040059FE0B /* SearchViewController.swift in Sources */,
+				2758208F263B85C70059FE0B /* VerifyViewController.swift in Sources */,
 				27509C12262BCDCD004D2722 /* FeedViewController.swift in Sources */,
 				27B264112635B0D800633448 /* IEXStock.swift in Sources */,
 				27509C01262BCB97004D2722 /* WatchlistViewController.swift in Sources */,
 				27548A37262BBC2C00B84E8B /* ViewController.swift in Sources */,
 				27548A33262BBC2C00B84E8B /* AppDelegate.swift in Sources */,
 				27548A35262BBC2C00B84E8B /* SceneDelegate.swift in Sources */,
+				2758208A263B6D280059FE0B /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

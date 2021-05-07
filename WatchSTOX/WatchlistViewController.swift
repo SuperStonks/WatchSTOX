@@ -88,6 +88,12 @@ class WatchlistViewController: UIViewController, UITableViewDataSource, UITableV
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+        // Set out default values
+//        let defaults = UserDefaults.standard
+//        defaults.setValue(false, forKey: "Dark Mode")
+//        defaults.setValue(false, forKey: "Notification Enabled")
+        
         tableView.dataSource = self
         tableView.delegate = self
         
@@ -115,6 +121,14 @@ class WatchlistViewController: UIViewController, UITableViewDataSource, UITableV
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+//        let defaults = UserDefaults.standard
+//
+//        if defaults.bool(forKey: "Dark Mode") == true {
+//            self.view.backgroundColor = .darkGray
+//        }
+//        else {
+//            self.view.backgroundColor = .white
+//        }
         
 //        quoteDisplay(symbol: "AAPL")
 //        let query = PFQuery(className:"Posts")
@@ -131,6 +145,28 @@ class WatchlistViewController: UIViewController, UITableViewDataSource, UITableV
 
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        tableView.reloadData()
+        
+        let defaults = UserDefaults.standard
+
+        if defaults.bool(forKey: "Dark Mode") == true {
+            self.view.backgroundColor = .darkGray
+            self.tableView.backgroundColor =
+                .darkGray
+            
+            
+        }
+        else {
+            self.view.backgroundColor = .white
+            self.tableView.backgroundColor =
+                .white
+        }
+
+    }
+
     // MARK: - Table view data source
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -147,7 +183,22 @@ class WatchlistViewController: UIViewController, UITableViewDataSource, UITableV
         
         let stock = stockList[indexPath.row]
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "WatchlistCell") as! WatchlistCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "WatchlistCell", for: indexPath) as! WatchlistCell
+        
+        let defaults = UserDefaults.standard
+
+        if defaults.bool(forKey: "Dark Mode") == true {
+            cell.backgroundColor = .darkGray
+            cell.companyName.textColor = .white
+            cell.tickerSymbol.textColor = .white
+            cell.stockPrice.textColor = .white
+        }
+        else {
+            cell.backgroundColor = .white
+            cell.companyName.textColor = .black
+            cell.tickerSymbol.textColor = .black
+            cell.stockPrice.textColor = .black
+        }
         
         let companyName = stock["companyName"] as! String
         let symbol = stock["symbol"] as! String
@@ -181,6 +232,26 @@ class WatchlistViewController: UIViewController, UITableViewDataSource, UITableV
 //        cell.tickerSymbol.text = symbol
 //        cell.stockPrice.text = latestPriceString
 //        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+
+        let cell = tableView.dequeueReusableCell(withIdentifier: "WatchlistCell", for: indexPath) as! WatchlistCell
+        
+        let defaults = UserDefaults.standard
+
+        if defaults.bool(forKey: "Dark Mode") == true {
+            cell.backgroundColor = .darkGray
+            cell.companyName.textColor = .white
+            cell.tickerSymbol.textColor = .white
+            cell.stockPrice.textColor = .white
+        }
+        else {
+            cell.backgroundColor = .white
+            cell.companyName.textColor = .black
+            cell.tickerSymbol.textColor = .black
+            cell.stockPrice.textColor = .black
+        }
     }
     
     
