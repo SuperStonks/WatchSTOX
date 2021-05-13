@@ -19,9 +19,11 @@ class WatchlistViewController: UIViewController, UITableViewDataSource, UITableV
 //
     
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var editButton: UIBarButtonItem!
     
     var watchlist = [String]()
     var stockList = [[String:Any]]()
+    var stockArray = [String]()
     
     let IEXApiKey: String = "Tpk_1bae23b220964b8c8042c12c06d4e84c"
     let BASE_URL: String = "https://sandbox.iexapis.com/stable/stock"
@@ -88,10 +90,12 @@ class WatchlistViewController: UIViewController, UITableViewDataSource, UITableV
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.navigationItem.rightBarButtonItem = self.editButtonItem
+        
         tableView.dataSource = self
         tableView.delegate = self
         
-        let stockArray: [String] = ["AAPL", "MSFT", "TSLA", "JBLU", "AMZN", "AA"]//, "RIOT"]
+        self.stockArray = ["AAPL", "MSFT", "TSLA", "JBLU", "AMZN", "AA"]//, "RIOT"]
 
         for stock in stockArray {
             quoteDisplay(symbol: stock)
@@ -259,6 +263,14 @@ class WatchlistViewController: UIViewController, UITableViewDataSource, UITableV
         // Pass the selected object to the new view controller.
     }
     */
+    
+    func watchlistArray(symbol: String) {
+        for x in self.stockArray {
+            if x == symbol {
+                print(x)
+            }
+        }
+    }
 
     
     @IBAction func onLogoutButton(_ sender: Any) {
