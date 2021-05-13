@@ -90,15 +90,12 @@ class WatchlistViewController: UIViewController, UITableViewDataSource, UITableV
     override func viewDidLoad() {
         super.viewDidLoad()
         
-<<<<<<< HEAD
         self.navigationItem.rightBarButtonItem = self.editButtonItem
-=======
         
         // Set out default values
 //        let defaults = UserDefaults.standard
 //        defaults.setValue(false, forKey: "Dark Mode")
 //        defaults.setValue(false, forKey: "Notification Enabled")
->>>>>>> a9286893f86afcdc5e0fc3235e51bba13a32d923
         
         tableView.dataSource = self
         tableView.delegate = self
