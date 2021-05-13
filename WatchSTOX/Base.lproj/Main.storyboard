@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<<<<<<< HEAD
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ypP-55-Xzx">
+=======
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+>>>>>>> a9286893f86afcdc5e0fc3235e51bba13a32d923
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
@@ -71,8 +75,11 @@
                     </view>
                     <navigationItem key="navigationItem" id="WmT-kB-Bzb"/>
                     <connections>
+                        <outlet property="appTitle" destination="of4-Ll-MFW" id="gur-EI-G6z"/>
                         <outlet property="passwordField" destination="Th6-D4-QrL" id="wlu-qa-HEb"/>
+                        <outlet property="passwordText" destination="0fr-jN-qXS" id="E5y-1i-JGP"/>
                         <outlet property="usernameField" destination="BL1-kE-Nmr" id="W1l-wN-wVE"/>
+                        <outlet property="usernameText" destination="C47-yF-5Ny" id="uAy-Qv-dke"/>
                         <segue destination="ypP-55-Xzx" kind="presentation" identifier="loginSegue" id="xSO-sv-dGk"/>
                     </connections>
                 </viewController>
@@ -80,46 +87,188 @@
             </objects>
             <point key="canvasLocation" x="-197" y="-45"/>
         </scene>
-        <!--Setting-->
+        <!--SettingsViewController-->
         <scene sceneID="cYp-gI-lfK">
             <objects>
-                <viewController id="k8M-xm-5gy" sceneMemberID="viewController">
+                <viewController title="SettingsViewController" id="k8M-xm-5gy" customClass="SettingsViewController" customModule="WatchSTOX" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="k9G-ZN-qU7">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="o25-hi-f0h">
+                                <rect key="frame" x="246" y="141" width="49" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="changeSettings:" destination="k8M-xm-5gy" eventType="valueChanged" id="gra-wS-Cih"/>
+                                </connections>
+                            </switch>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Enable Notifications" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ASK-FY-3gE">
+                                <rect key="frame" x="60" y="208" width="160" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="pVL-ZI-5Bc">
+                                <rect key="frame" x="246" y="208" width="49" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="changeSettings:" destination="k8M-xm-5gy" eventType="valueChanged" id="tFx-PI-ses"/>
+                                </connections>
+                            </switch>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Dark Mode" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tTh-AN-YOD">
+                                <rect key="frame" x="60" y="141" width="84" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O6t-Db-5KE">
+                                <rect key="frame" x="60" y="269" width="123" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Change Password"/>
+                                <connections>
+                                    <action selector="onChangePasswordButton:" destination="k8M-xm-5gy" eventType="touchUpInside" id="z2J-6r-XHK"/>
+                                    <segue destination="B0x-cW-ssI" kind="presentation" identifier="changePassword" id="vLk-xw-nRf"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="gPK-gk-WQM"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <gestureRecognizers/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="NXy-ya-eJg" appends="YES" id="JU9-CK-Tdg"/>
+                        </connections>
                     </view>
-                    <navigationItem key="navigationItem" title="Setting" id="cQ2-Id-fGi">
-                        <barButtonItem key="leftBarButtonItem" title="Logout" id="chm-Cr-BQY"/>
+                    <navigationItem key="navigationItem" title="Settings" id="cQ2-Id-fGi">
+                        <barButtonItem key="leftBarButtonItem" title="Logout" id="chm-Cr-BQY">
+                            <connections>
+                                <action selector="onLogoutButton:" destination="k8M-xm-5gy" id="qsk-jd-FRG"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="darkModeSwitch" destination="o25-hi-f0h" id="xv6-F1-yOM"/>
+                        <outlet property="darkModeText" destination="tTh-AN-YOD" id="71y-UU-ANU"/>
+                        <outlet property="notificationSwitch" destination="pVL-ZI-5Bc" id="Zi1-Ic-rIL"/>
+                        <outlet property="notificationText" destination="ASK-FY-3gE" id="wYl-t0-959"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lgT-r6-SEa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="NXy-ya-eJg"/>
             </objects>
-            <point key="canvasLocation" x="1084" y="2342"/>
+            <point key="canvasLocation" x="1082.608695652174" y="2341.0714285714284"/>
         </scene>
-        <!--Search-->
+        <!--VerifyViewController-->
+        <scene sceneID="xWB-sY-DiA">
+            <objects>
+                <viewController title="VerifyViewController" modalPresentationStyle="fullScreen" id="axN-lW-rAu" customClass="VerifyViewController" customModule="WatchSTOX" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="zYf-XF-DgV">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="New Password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mNj-hC-hxq">
+                                <rect key="frame" x="65" y="181" width="112" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Retype Password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="snz-0c-jUm">
+                                <rect key="frame" x="65" y="242" width="132" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Email" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="poZ-bl-EoM">
+                                <rect key="frame" x="65" y="302" width="41" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0Gk-sU-1gZ">
+                                <rect key="frame" x="235" y="174" width="131" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="q27-OT-1Gv">
+                                <rect key="frame" x="235" y="235" width="131" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dzS-5z-d2F">
+                                <rect key="frame" x="235" y="295" width="131" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sZ1-zW-5ss">
+                                <rect key="frame" x="180" y="373" width="55" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Confirm"/>
+                                <connections>
+                                    <action selector="onConfirmButton:" destination="axN-lW-rAu" eventType="touchUpInside" id="Tn2-Jm-UiS"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Q5s-7y-V4B"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="GbP-4W-6PF">
+                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="bli-mz-YDr">
+                            <connections>
+                                <action selector="onCancelButton:" destination="axN-lW-rAu" id="qYK-pL-VbZ"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="emailField" destination="dzS-5z-d2F" id="4Fu-iv-qLx"/>
+                        <outlet property="emailLabel" destination="poZ-bl-EoM" id="s7n-nT-La3"/>
+                        <outlet property="newPasswordField" destination="0Gk-sU-1gZ" id="tm5-d7-lRU"/>
+                        <outlet property="newPasswordLabel" destination="mNj-hC-hxq" id="DCL-sB-kdU"/>
+                        <outlet property="retypePasswordField" destination="q27-OT-1Gv" id="C0c-tV-bGv"/>
+                        <outlet property="retypePasswordLabel" destination="snz-0c-jUm" id="46G-Ce-IEe"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Jwz-EI-YEE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1082.608695652174" y="3967.6339285714284"/>
+        </scene>
+        <!--SearchViewController-->
         <scene sceneID="LNV-tJ-EUG">
             <objects>
-                <viewController id="jrA-as-1Nj" sceneMemberID="viewController">
+                <viewController title="SearchViewController" id="jrA-as-1Nj" customClass="SearchViewController" customModule="WatchSTOX" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="WBv-9u-G9E">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="8U2-x7-4Ks"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <gestureRecognizers/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="CPF-hD-nX8" appends="YES" id="Ha7-um-RKk"/>
+                        </connections>
                     </view>
                     <navigationItem key="navigationItem" title="Search" id="XW1-oS-N1s">
-                        <barButtonItem key="leftBarButtonItem" title="Logout" id="nJe-93-zQn"/>
+                        <barButtonItem key="leftBarButtonItem" title="Logout" id="nJe-93-zQn">
+                            <connections>
+                                <action selector="onLogoutButton:" destination="jrA-as-1Nj" id="Vab-Eg-96L"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EZG-bh-IIV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="CPF-hD-nX8"/>
             </objects>
             <point key="canvasLocation" x="-197" y="2342"/>
         </scene>
-        <!--Watchlist-->
+        <!--WatchlistViewController-->
         <scene sceneID="pwX-Ye-hBP">
             <objects>
-                <viewController storyboardIdentifier="WatchlistViewController" id="BAj-HJ-Tdk" customClass="WatchlistViewController" customModule="WatchSTOX" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="WatchlistViewController" title="WatchlistViewController" id="BAj-HJ-Tdk" customClass="WatchlistViewController" customModule="WatchSTOX" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="W9V-BN-S06">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -197,7 +346,7 @@
                     <navigationItem key="navigationItem" title="Watchlist" id="s4S-hb-Vsn">
                         <barButtonItem key="leftBarButtonItem" title="Logout" id="mG1-Pq-fbI">
                             <connections>
-                                <action selector="onLogoutButton:" destination="BAj-HJ-Tdk" id="t5Z-4M-26Q"/>
+                                <action selector="onLogoutButton:" destination="BAj-HJ-Tdk" id="YdH-if-Vuf"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Edit" id="QOG-Xl-4TC"/>
@@ -287,6 +436,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9hf-d6-YJ1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1083" y="1540"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="YLa-ea-kJN">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" modalPresentationStyle="fullScreen" id="B0x-cW-ssI" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="26m-d5-F0r">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="axN-lW-rAu" kind="relationship" relationship="rootViewController" id="CY6-XL-lUu"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iUt-8B-hBS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1082.608695652174" y="3166.7410714285711"/>
         </scene>
     </scenes>
     <resources>

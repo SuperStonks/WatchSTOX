@@ -12,10 +12,42 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var usernameField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
     
+    @IBOutlet weak var appTitle: UILabel!
+    @IBOutlet weak var usernameText: UILabel!
+    @IBOutlet weak var passwordText: UILabel!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        // Set out default values
+        let defaults = UserDefaults.standard
+        defaults.setValue(false, forKey: "Dark Mode")
+        defaults.setValue(false, forKey: "Notification Enabled")
+        
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        let defaults = UserDefaults.standard
+
+        if defaults.bool(forKey: "Dark Mode") == true {
+            self.view.backgroundColor = .darkGray
+            appTitle
+                .textColor = .white
+            usernameText.textColor = .white
+            passwordText.textColor = .white
+        }
+        else {
+            self.view.backgroundColor = .white
+            appTitle
+                .textColor = .black
+            usernameText.textColor = .black
+            passwordText.textColor = .black
+        }
+
     }
     
     @IBAction func onSignIn(_ sender: Any) {
