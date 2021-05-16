@@ -29,9 +29,13 @@ we can add ways to show and analyze the stock market, i.e. which stock had the b
 further we can add a simulation tab which provides you with fake money and let's you invest as if it was real
 and the fake portfolio changes with real time stock exchange prices.
 
+### App Sprint-3 GIF
+
+![Walkthrough](https://media1.giphy.com/media/n43FZcxSX0qmNs2bcv/giphy.gif?cid=790b76115b7e78d5a7f10c5ad974c7b261dac9833f37a7d3&rid=giphy.gif&ct=g)
+
 ### App Sprint-2 GIF
 
-* Working on sprint 2.....
+* Will upload soon...
 
 ### App Sprint-1 GIF
 
@@ -50,7 +54,7 @@ and the fake portfolio changes with real time stock exchange prices.
 * [ ] User can filter through certain stocks
 * [ ] User can add stocks to be placed on a watchlist
 * [ ] User can remove stocks from watchlist
-* [ ] User can look at detailed stock information
+* [X] User can look at detailed stock information
 * [X] User can change to Dark Mode
 * [X] User can disable/enable notifications
 * [ ] User can receive notifications
