@@ -100,7 +100,7 @@ class WatchlistViewController: UIViewController, UITableViewDataSource, UITableV
         tableView.dataSource = self
         tableView.delegate = self
         
-        self.stockArray = ["AAPL", "MSFT", "TSLA", "JBLU", "AMZN", "AA"]//, "RIOT"]
+        self.stockArray = ["AAPL", "MSFT", "TSLA", "JBLU", "AMZN", "AA", "RIOT"]
 
         for stock in stockArray {
             quoteDisplay(symbol: stock)
@@ -353,5 +353,23 @@ class WatchlistViewController: UIViewController, UITableViewDataSource, UITableV
         
         delegate.window?.rootViewController = loginViewController
         
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Get the new view controller using segue.destination.
+        // Pass the selected object to the new view controller.
+        
+        print("Loading up the details screen")
+        
+        // Find the selected movie
+        let cell = sender as! WatchlistCell
+        let indexPath = tableView.indexPath(for: cell)!
+        let stock = stockList[indexPath.row]
+        
+        // Pass the selected movie to the details view controller
+        let detailsViewController = segue.destination as! StockDetailsViewController
+        detailsViewController.stock = stock
+        
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 }
