@@ -10,16 +10,57 @@ import Parse
 import AlamofireImage
 
 //UITableViewDataSource, UITableViewDelegate
-class SearchViewController: UIViewController  {
-    var searchActive = false
-    var stock = ["AAPL", "MSFT", "TSLA", "JBLU", "AMZN", "AA", "RIOT", "AMC", "BNGO", "PLUG", "PLTR", "GE", "F", "OCGN", "FSR", "AAL"]
-    var filterData: [String] = []
+class SearchViewController: UIViewController, UITableViewDataSource, UISearchResultsUpdating, UITableViewDelegate {
     
-    @IBOutlet weak var searchBar: UISearchBar!
+
+    var data = ["AAPL", "MSFT", "TSLA", "JBLU", "AMZN", "AA", "RIOT", "AMC", "BNGO", "PLUG", "PLTR", "GE", "F", "OCGN", "FSR", "AAL"]
+    var filterData: [String]!
+    var searchController: UISearchController!
+    var stockList = [[String:Any]]()
+
+    
+//    @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet weak var tableView: UITableView!
+    
+    func quoteDisplay(symbol: String) {
+        let IEXApiKey: String = "Tpk_1bae23b220964b8c8042c12c06d4e84c"
+        let BASE_URL: String = "https://sandbox.iexapis.com/stable/stock"
+        let url = URL(string: "\(BASE_URL)/\(symbol)/?token=\(IEXApiKey)")!
+        var request = URLRequest(url: url, cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: 10)
+        request.httpMethod = "GET"
+        let session = URLSession(configuration: .default, delegate: nil, delegateQueue: OperationQueue.main)
+        let task = session.dataTask(with: request) { [self] (data, response, error) in
+           // This will run when the network request returns
+           if let error = error {
+              print(error.localizedDescription)
+           } else if let data = data {
+            
+              let dataDictionary = try! JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
+            print(dataDictionary)
+            self.stockList.append(dataDictionary!)
+           }
+        }
+        task.resume()
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        tableView.dataSource = self
+//        searchBar.delegate = self
+        filterData = data
+        
+        searchController = UISearchController(searchResultsController: nil)
+        searchController.searchResultsUpdater = self
+        
+        searchController.dimsBackgroundDuringPresentation = false
+        
+        searchController.searchBar.sizeToFit()
+        tableView.tableHeaderView = searchController.searchBar
+        
+        definesPresentationContext = true
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -36,32 +77,43 @@ class SearchViewController: UIViewController  {
 
     }
     
-    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
-        searchActive = true
-    }
-    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
-        searchActive = false
-    }
-    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        searchActive = false
-    }
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        searchActive = false
-
-    }
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        filterData = stock
-        if searchText.isEmpty == false { stock.filter({ $0.contains(searchText)})
-        }
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+//        let cell = tableView.dequeueReusableCell(withIdentifier: "SearchCell", for: indexPath) as! SearchCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "SearchCell")! as! SearchCell
+        
+        cell.tickerSymbol.text = filterData[indexPath.row]
+        
+        
+        
+        return cell
     }
     
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return filterData.count
+    }
 
-//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        if searchActive {
-//            return filterData.count
+    func updateSearchResults(for searchController: UISearchController) {
+        if let searchText = searchController.searchBar.text {
+            filterData = searchText.isEmpty ? data : data.filter({ (dataString: String) -> Bool in
+                return dataString.range(of: searchText, options: .caseInsensitive, range: nil, locale: nil) != nil
+            })
+        }
+        
+        tableView.reloadData()
+    }
+//    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+////        filterData = searchText.isEmpty ? stocks : stocks.filter({ (item: String) -> Bool in
+////            return item.range(of: searchText, options: .caseInsensitive, range: nil, locale: nil) != nil
+////        })
+//        if let searchText = searchController.searchBar.text {
+//            filterData = searchText.isEmpty ? stocks : stocks.filter({ (dataString: String) -> Bool in
+//                return dataString.range(of: searchText, options: .caseInsensitive, range: nil, locale: nil) != nil
+//            })
 //        }
-//        return stock.count
+//
+//        tableView.reloadData()
 //    }
+    
 //
 //    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 //        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! SearchStockCell
@@ -82,6 +134,26 @@ class SearchViewController: UIViewController  {
         // Pass the selected object to the new view controller.
     }
     */
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Get the new view controller using segue.destination.
+        // Pass the selected object to the new view controller.
+
+        print("Loading up the details screen")
+
+        // Find the selected movie
+        let cell = sender as! WatchlistCell
+        let indexPath = tableView.indexPath(for: cell)!
+        quoteDisplay(symbol: filterData[indexPath.row])
+        
+        let stock = stockList[0]
+
+        // Pass the selected movie to the details view controller
+        let detailsViewController = segue.destination as! StockDetailsViewController
+        detailsViewController.stock = stock
+
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
     
     
     @IBAction func onLogoutButton(_ sender: Any) {

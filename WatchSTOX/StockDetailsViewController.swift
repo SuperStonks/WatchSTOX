@@ -27,33 +27,7 @@ class StockDetailsViewController: UIViewController {
     
     let IEXApiKey: String = "Tpk_1bae23b220964b8c8042c12c06d4e84c"
     let BASE_URL: String = "https://sandbox.iexapis.com/stable/stock"
-    
-    func quoteDisplay(symbol: String) {
-
-        let url = URL(string: "\(BASE_URL)/\(symbol)/?token=\(self.IEXApiKey)")!
-        var request = URLRequest(url: url, cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: 10)
-        request.httpMethod = "GET"
-        let session = URLSession(configuration: .default, delegate: nil, delegateQueue: OperationQueue.main)
-        let task = session.dataTask(with: request) { [self] (data, response, error) in
-           // This will run when the network request returns
-           if let error = error {
-              print(error.localizedDescription)
-           } else if let data = data {
-            
-              let dataDictionary = try! JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
-//            self.stockList.append(dataDictionary!)
-            print(dataDictionary)
-//            let query = dataDictionary!
-
-//            self.watchlist.append(symbol)
-            
-//            self.logoDisplay(symbol: symbol)
-//            self.tableView.reloadData()
-           }
-        }
-        task.resume()
-    }
-    
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         
