@@ -21,25 +21,34 @@ class SearchViewController: UIViewController, UITableViewDataSource, UISearchRes
     
 //    @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var watchlistSwitch: UISwitch!
+    
     
     func quoteDisplay(symbol: String) {
         let IEXApiKey: String = "Tpk_1bae23b220964b8c8042c12c06d4e84c"
         let BASE_URL: String = "https://sandbox.iexapis.com/stable/stock"
-        let url = URL(string: "\(BASE_URL)/\(symbol)/?token=\(IEXApiKey)")!
+        let url = URL(string: "\(BASE_URL)/\(symbol)/quote?token=\(IEXApiKey)")!
         var request = URLRequest(url: url, cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: 10)
         request.httpMethod = "GET"
+        print(symbol)
+        print(url)
+
         let session = URLSession(configuration: .default, delegate: nil, delegateQueue: OperationQueue.main)
+//        let session = URLSession()
+        print("start the task to retrieve stock data")
         let task = session.dataTask(with: request) { [self] (data, response, error) in
-           // This will run when the network request returns
-           if let error = error {
-              print(error.localizedDescription)
-           } else if let data = data {
+        // This will run when the network request returns
+        if let error = error {
+           print(error.localizedDescription)
+        } else if let data = data {
+         
+           let dataDictionary = try! JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
+            print(dataDictionary!)
             
-              let dataDictionary = try! JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
-            print(dataDictionary)
             self.stockList.append(dataDictionary!)
            }
         }
+        print("getting stock finished")
         task.resume()
     }
     
@@ -49,6 +58,7 @@ class SearchViewController: UIViewController, UITableViewDataSource, UISearchRes
 
         // Do any additional setup after loading the view.
         tableView.dataSource = self
+        tableView.delegate = self
 //        searchBar.delegate = self
         filterData = data
         
@@ -56,10 +66,12 @@ class SearchViewController: UIViewController, UITableViewDataSource, UISearchRes
         searchController.searchResultsUpdater = self
         
         searchController.dimsBackgroundDuringPresentation = false
-        
         searchController.searchBar.sizeToFit()
         tableView.tableHeaderView = searchController.searchBar
-        
+        searchController.searchBar.placeholder = "Search Symbols"
+        searchController.obscuresBackgroundDuringPresentation = false
+//        navigationItem.searchController = searchController
+
         definesPresentationContext = true
     }
     
@@ -134,6 +146,20 @@ class SearchViewController: UIViewController, UITableViewDataSource, UISearchRes
         // Pass the selected object to the new view controller.
     }
     */
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let selectedCell = filterData[indexPath.row]
+        
+        print(selectedCell)
+        
+    }
+    
+//    var isSearchBarEmpty: Bool {
+//      return searchController.searchBar.text?.isEmpty ?? true
+//    }
+//
+//    var isFiltering: Bool {
+//      return searchController.isActive && !isSearchBarEmpty
+//    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
@@ -141,16 +167,33 @@ class SearchViewController: UIViewController, UITableViewDataSource, UISearchRes
 
         print("Loading up the details screen")
 
-        // Find the selected movie
-        let cell = sender as! WatchlistCell
+        // Find the selected ticker symbol
+        let cell = sender as! SearchCell
         let indexPath = tableView.indexPath(for: cell)!
-        quoteDisplay(symbol: filterData[indexPath.row])
+        print(indexPath)
         
-        let stock = stockList[0]
+//        var symbol = ""
+//        if isFiltering {
+//          symbol = filterData[indexPath.row]
+//        } else {
+//          symbol = data[indexPath.row]
+//        }
+        print(indexPath.row)
+        
+//        quoteDisplay(symbol: symbol)
+        print("this is symbol:", filterData[indexPath.row])
+//        quoteDisplay(symbol: filterData[indexPath.row])
+        
+//        print(stockList)
+        
+//        var asdf: [String: Any]!
+//        print(asdf)
+//        let stock = stockList[0]
 
         // Pass the selected movie to the details view controller
         let detailsViewController = segue.destination as! StockDetailsViewController
-        detailsViewController.stock = stock
+//        detailsViewController.stock = stock
+        detailsViewController.stockSymbol = filterData[indexPath.row]
 
         tableView.deselectRow(at: indexPath, animated: true)
     }
@@ -164,6 +207,9 @@ class SearchViewController: UIViewController, UITableViewDataSource, UISearchRes
         let delegate = self.view.window?.windowScene?.delegate as! SceneDelegate
         
         delegate.window?.rootViewController = loginViewController
+    }
+    
+    @IBAction func checkWatchlist(_ sender: Any) {
     }
     
 }

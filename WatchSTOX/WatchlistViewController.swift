@@ -42,6 +42,7 @@ class WatchlistViewController: UIViewController, UITableViewDataSource, UITableV
             
               let dataDictionary = try! JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
             self.stockList.append(dataDictionary!)
+            print(dataDictionary!)
 
 
 //            let query = dataDictionary!
@@ -54,38 +55,6 @@ class WatchlistViewController: UIViewController, UITableViewDataSource, UITableV
         }
         task.resume()
     }
-    
-//    func logoDisplay(symbol: String) {
-//
-//        let url = URL(string: "\(BASE_URL)/\(symbol)/logo?token=\(IEXApiKey)")!
-//        var request = URLRequest(url: url, cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: 10)
-//        request.httpMethod = "GET"
-//        let session = URLSession(configuration: .default, delegate: nil, delegateQueue: OperationQueue.main)
-//        let task = session.dataTask(with: request) { (data, response, error) in
-//           // This will run when the network request returns
-//           if let error = error {
-//              print(error.localizedDescription)
-//           } else if let data = data {
-//
-//            let dataDictionary = try! JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
-//            var logoPath = dataDictionary!["url"] as! String
-//            logoPath = "https://storage.googleapis.com/iex/api/logos/\(symbol).png"
-//
-//            print("logoPath:", logoPath)
-//
-//            let logoURL = URL(string: logoPath)
-//            print("logoURL:", logoURL!)
-//            print(type(of: logoURL))
-//
-//
-//            let cell = self.tableView.dequeueReusableCell(withIdentifier: "WatchlistCell") as! WatchlistCell
-//            cell.logoView.af.setImage(withURL: logoURL!)
-//
-//            self.tableView.reloadData()
-//           }
-//        }
-//        task.resume()
-//    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
