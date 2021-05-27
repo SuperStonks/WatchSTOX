@@ -73,13 +73,7 @@ class WatchlistViewController: UIViewController, UITableViewDataSource, UITableV
         tableView.dataSource = self
         tableView.delegate = self
         
-<<<<<<< Updated upstream
         self.stockArray = ["AAPL", "MSFT", "TSLA", "JBLU", "AMZN", "AA", "RIOT"]
-=======
-        myRefreshControl.addTarget(self, action: #selector(viewDidAppear), for: .valueChanged)
-        
-        self.stockArray = ["AAPL", "MSFT", "TSLA", "JBLU", "AMZN", "AA"]//, "RIOT"]
->>>>>>> Stashed changes
 
         for stock in stockArray {
             quoteDisplay(symbol: stock)
