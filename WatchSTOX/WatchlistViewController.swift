@@ -23,7 +23,12 @@ class WatchlistViewController: UIViewController, UITableViewDataSource, UITableV
     
     var watchlist = [String]()
     var stockList = [[String:Any]]()
+    var watchlistObj = [PFObject]()
     var stockArray = [String]()
+    var selectedStock: PFObject!
+    
+    
+    let myRefreshControl = UIRefreshControl()
     
     let IEXApiKey: String = "Tpk_1bae23b220964b8c8042c12c06d4e84c"
     let BASE_URL: String = "https://sandbox.iexapis.com/stable/stock"
@@ -43,7 +48,6 @@ class WatchlistViewController: UIViewController, UITableViewDataSource, UITableV
               let dataDictionary = try! JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
             self.stockList.append(dataDictionary!)
 
-
 //            let query = dataDictionary!
 
             self.watchlist.append(symbol)
@@ -54,38 +58,6 @@ class WatchlistViewController: UIViewController, UITableViewDataSource, UITableV
         }
         task.resume()
     }
-    
-//    func logoDisplay(symbol: String) {
-//
-//        let url = URL(string: "\(BASE_URL)/\(symbol)/logo?token=\(IEXApiKey)")!
-//        var request = URLRequest(url: url, cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: 10)
-//        request.httpMethod = "GET"
-//        let session = URLSession(configuration: .default, delegate: nil, delegateQueue: OperationQueue.main)
-//        let task = session.dataTask(with: request) { (data, response, error) in
-//           // This will run when the network request returns
-//           if let error = error {
-//              print(error.localizedDescription)
-//           } else if let data = data {
-//
-//            let dataDictionary = try! JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
-//            var logoPath = dataDictionary!["url"] as! String
-//            logoPath = "https://storage.googleapis.com/iex/api/logos/\(symbol).png"
-//
-//            print("logoPath:", logoPath)
-//
-//            let logoURL = URL(string: logoPath)
-//            print("logoURL:", logoURL!)
-//            print(type(of: logoURL))
-//
-//
-//            let cell = self.tableView.dequeueReusableCell(withIdentifier: "WatchlistCell") as! WatchlistCell
-//            cell.logoView.af.setImage(withURL: logoURL!)
-//
-//            self.tableView.reloadData()
-//           }
-//        }
-//        task.resume()
-//    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -100,12 +72,42 @@ class WatchlistViewController: UIViewController, UITableViewDataSource, UITableV
         tableView.dataSource = self
         tableView.delegate = self
         
+<<<<<<< Updated upstream
         self.stockArray = ["AAPL", "MSFT", "TSLA", "JBLU", "AMZN", "AA", "RIOT"]
+=======
+        myRefreshControl.addTarget(self, action: #selector(viewDidAppear), for: .valueChanged)
+        
+        self.stockArray = ["AAPL", "MSFT", "TSLA", "JBLU", "AMZN", "AA"]//, "RIOT"]
+>>>>>>> Stashed changes
 
         for stock in stockArray {
             quoteDisplay(symbol: stock)
 //            self.tableView.reloadData()
         }
+        
+        watchlistInput(symbol: "MSFT")
+        
+        print(watchlistArray())
+        
+        
+//        var query = PFQuery(className:"Stock")
+//        let results = try! query.findObjects()
+//
+//        query.findObjectsInBackground { (results: [PFObject]?, error: Error?) in
+//            if error == nil && results != nil {
+//              print("results:", results)
+//            } else {
+//              print("error", error)
+//            }
+//        }
+//        query.getObjectInBackgroundWithId("<PARSE_OBJECT_ID>") {
+//          (parseObject: PFObject?, error: NSError?) -> Void in
+//          if error == nil && parseObject != nil {
+//            print(parseObject)
+//          } else {
+//            print(error)
+//          }
+//        }
         
 //        quoteDisplay(symbol: "AAPL")
 //        quoteDisplay(symbol: "TSLA")
@@ -145,6 +147,7 @@ class WatchlistViewController: UIViewController, UITableViewDataSource, UITableV
 //            }
 //
 //        }
+//        watchlistArray()
 
     }
     
@@ -179,6 +182,7 @@ class WatchlistViewController: UIViewController, UITableViewDataSource, UITableV
 //        print("this is the stocklist", stockList)
 //        print(companyName.count)
 //        self.tableView.reloadData()
+//        print(watchlist)
         return watchlist.count
     }
     
@@ -214,7 +218,7 @@ class WatchlistViewController: UIViewController, UITableViewDataSource, UITableV
         
         let logoPath = "https://storage.googleapis.com/iex/api/logos/\(symbol).png"
         
-        print("logoPath:", logoPath)
+//        print("logoPath:", logoPath)
         
         let logoURL = URL(string: logoPath)
         cell.logoView.af.setImage(withURL: logoURL!)
@@ -334,13 +338,71 @@ class WatchlistViewController: UIViewController, UITableViewDataSource, UITableV
     }
     */
     
-    func watchlistArray(symbol: String) {
-        for x in self.stockArray {
-            if x == symbol {
-                print(x)
+    func watchlistArray() {
+//        for x in self.stockArray {
+//            if x == symbol {
+//                print(x)
+//            }
+//        }
+        
+//        let query = PFQuery(className: "Stocks")
+//        query.includeKeys(["symbol", "author"])
+//        query.limit = 20
+//
+//        query.findObjectsInBackground { (watchlistObj, error) in
+//            if watchlistObj != nil {
+//                self.watchlistObj = watchlistObj!
+//                self.tableView.reloadData()
+//                self.myRefreshControl.endRefreshing()
+//            }
+//        }
+        
+        let query = PFQuery(className:"Stocks")
+//        query.includeKeys(["symbol", "author"])
+        let results = try! query.findObjects()
+        print("First results: ",results) // Array<PFObject>
+        print(results[1]["symbol"]!)
+        
+//        query.findObjectsInBackground { (results: [PFObject]?, error: Error?) in
+//            if error == nil && results != nil {
+//              print("results:", results)
+//            } else {
+//              print("error", error)
+//            }
+//        }
+    }
+    
+    func watchlistInput(symbol: String) {
+
+        let stock = PFObject(className: "Stocks")
+        stock["symbol"] = symbol
+        stock["user"] = PFUser.current()!
+
+        stock.saveInBackground { (success, error) in
+            if success {
+                print("Symbol saved")
+            } else {
+                print("Error saving symbol")
             }
         }
+        tableView.reloadData()
     }
+    
+//    func watchlistRemoval(symbol: String) {
+//
+//        let stock = PFObject(className: "Stocks")
+//        stock["symbol"] = symbol
+//
+//        stock.saveInBackground { (success, error) in
+//            if success {
+//                print("Symbol saved")
+//            } else {
+//                print("Error saving symbol")
+//            }
+//        }
+//
+//        tableView.reloadData()
+//    }
 
     
     @IBAction func onLogoutButton(_ sender: Any) {
