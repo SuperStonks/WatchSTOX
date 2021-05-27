@@ -71,7 +71,19 @@ class LoginViewController: UIViewController {
         
         user.signUpInBackground { (success, error) in
             if success {
-                self.performSegue(withIdentifier: "loginSegue", sender: nil)
+                let watchlist = PFObject(className: "Watchlist")
+                watchlist["symbolsList"] = [String]()
+                watchlist["author"] = PFUser.current()!
+                watchlist["watchCount"] = 0
+                
+                watchlist.saveInBackground() { (succes, error) in
+                    if success {
+                        print("Watchlist created.")
+                        self.performSegue(withIdentifier: "loginSegue", sender: nil)
+                    } else {
+                        print("Error creating watchlist")
+                    }
+                }
             }
             else {
                 print("Error: \(error?.localizedDescription)")

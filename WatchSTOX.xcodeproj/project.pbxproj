@@ -23,6 +23,7 @@
 		27582085263B6D040059FE0B /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27582084263B6D040059FE0B /* SearchViewController.swift */; };
 		2758208A263B6D280059FE0B /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27582089263B6D280059FE0B /* SettingsViewController.swift */; };
 		2758208F263B85C70059FE0B /* VerifyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2758208E263B85C60059FE0B /* VerifyViewController.swift */; };
+		276485D926603AC70022C28D /* SearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276485D826603AC70022C28D /* SearchCell.swift */; };
 		27A86B8E2650987B006DCE7A /* StockDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27A86B8D2650987B006DCE7A /* StockDetailsViewController.swift */; };
 		27B264112635B0D800633448 /* IEXStock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27B264102635B0D700633448 /* IEXStock.swift */; };
 		781359C586C92D6249367AAD /* Pods_WatchSTOX_WatchSTOXUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 624CB18D2737011CC72B07B7 /* Pods_WatchSTOX_WatchSTOXUITests.framework */; };
@@ -71,6 +72,7 @@
 		27582084263B6D040059FE0B /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		27582089263B6D280059FE0B /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		2758208E263B85C60059FE0B /* VerifyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyViewController.swift; sourceTree = "<group>"; };
+		276485D826603AC70022C28D /* SearchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCell.swift; sourceTree = "<group>"; };
 		27A86B8D2650987B006DCE7A /* StockDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockDetailsViewController.swift; sourceTree = "<group>"; };
 		27B264102635B0D700633448 /* IEXStock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IEXStock.swift; sourceTree = "<group>"; };
 		55111405C6525C66B1092505 /* Pods-WatchSTOX-WatchSTOXUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WatchSTOX-WatchSTOXUITests.debug.xcconfig"; path = "Target Support Files/Pods-WatchSTOX-WatchSTOXUITests/Pods-WatchSTOX-WatchSTOXUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -150,6 +152,7 @@
 				27582084263B6D040059FE0B /* SearchViewController.swift */,
 				27582089263B6D280059FE0B /* SettingsViewController.swift */,
 				2758208E263B85C60059FE0B /* VerifyViewController.swift */,
+				276485D826603AC70022C28D /* SearchCell.swift */,
 			);
 			path = WatchSTOX;
 			sourceTree = "<group>";
@@ -433,6 +436,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				276485D926603AC70022C28D /* SearchCell.swift in Sources */,
 				27A86B8E2650987B006DCE7A /* StockDetailsViewController.swift in Sources */,
 				27509C1F262BCED8004D2722 /* WatchlistCell.swift in Sources */,
 				27509C1A262BCE48004D2722 /* LoginViewController.swift in Sources */,

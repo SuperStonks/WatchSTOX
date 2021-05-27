@@ -24,6 +24,7 @@ class WatchlistViewController: UIViewController, UITableViewDataSource, UITableV
     var watchlist = [String]()
     var stockList = [[String:Any]]()
     var stockArray = [String]()
+    var userWatchlist = [String]()
     
     let IEXApiKey: String = "Tpk_1bae23b220964b8c8042c12c06d4e84c"
     let BASE_URL: String = "https://sandbox.iexapis.com/stable/stock"
@@ -42,10 +43,10 @@ class WatchlistViewController: UIViewController, UITableViewDataSource, UITableV
             
               let dataDictionary = try! JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
             self.stockList.append(dataDictionary!)
+            print(dataDictionary!)
 
 
 //            let query = dataDictionary!
-
             self.watchlist.append(symbol)
             
 //            self.logoDisplay(symbol: symbol)
@@ -54,6 +55,32 @@ class WatchlistViewController: UIViewController, UITableViewDataSource, UITableV
         }
         task.resume()
     }
+//    func quoteDisplay(symbol: String) {
+//
+//        let url = URL(string: "\(BASE_URL)/\(symbol)/quote?token=\(self.IEXApiKey)")!
+//        var request = URLRequest(url: url, cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: 10)
+//        request.httpMethod = "GET"
+//        let session = URLSession(configuration: .default, delegate: nil, delegateQueue: OperationQueue.main)
+//        let task = session.dataTask(with: request) { [self] (data, response, error) in
+//           // This will run when the network request returns
+//           if let error = error {
+//              print(error.localizedDescription)
+//           } else if let data = data {
+//
+//              let dataDictionary = try! JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
+//            self.stockList.append(dataDictionary!)
+//
+//
+////            let query = dataDictionary!
+//
+//            self.watchlist.append(symbol)
+//
+////            self.logoDisplay(symbol: symbol)
+//            self.tableView.reloadData()
+//           }
+//        }
+//        task.resume()
+//    }
     
 //    func logoDisplay(symbol: String) {
 //
@@ -87,6 +114,42 @@ class WatchlistViewController: UIViewController, UITableViewDataSource, UITableV
 //        task.resume()
 //    }
     
+    func splitWatchlist() {
+        print("spltting watchlist for watchlist queries")
+        var query = PFQuery(className:"Watchlist")
+        query.whereKey("author", equalTo: PFUser.current()!)
+        query.includeKey("symbolsList")
+//        query.getObjectInBackgroundWithId("symbolsList") {
+//          (parseObject: PFObject?, error: NSError?) -> Void in
+//          if error == nil && parseObject != nil {
+//            print(parseObject)
+//          } else {
+//            print(error)
+//          }
+//        }
+        
+        
+//        let query = PFQuery(className: "Watchlist")
+//        query.whereKey("author", equalTo: PFUser.current()!)
+//        query.includeKeys(["symbolsList"])
+        query.findObjectsInBackground() { (watchlistObj, error) in
+            if watchlistObj != nil {
+//                self.userWatchlist = watchlistObj!
+//                self.tableView.reloadData()
+                print(watchlistObj?[0]["symbolsList"])
+//                for item in watchlistObj {
+//
+//                    print("this is a :", item)
+//                }
+            }
+        }
+        
+//        var test = ["hello", "this", "is", "a", "watchlist"]
+//        for item in test {
+//            print(item)
+//        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -100,7 +163,8 @@ class WatchlistViewController: UIViewController, UITableViewDataSource, UITableV
         tableView.dataSource = self
         tableView.delegate = self
         
-        self.stockArray = ["AAPL", "MSFT", "TSLA", "JBLU", "AMZN", "AA", "RIOT"]
+        self.stockArray = ["AAPL", "MSFT", "TSLA"]
+//                           , "JBLU", "AMZN", "AA", "RIOT"]
 
         for stock in stockArray {
             quoteDisplay(symbol: stock)
@@ -145,6 +209,7 @@ class WatchlistViewController: UIViewController, UITableViewDataSource, UITableV
 //            }
 //
 //        }
+        splitWatchlist()
 
     }
     
@@ -167,7 +232,7 @@ class WatchlistViewController: UIViewController, UITableViewDataSource, UITableV
             self.tableView.backgroundColor =
                 .white
         }
-
+        print(stockList)
     }
 
     // MARK: - Table view data source
@@ -214,7 +279,7 @@ class WatchlistViewController: UIViewController, UITableViewDataSource, UITableV
         
         let logoPath = "https://storage.googleapis.com/iex/api/logos/\(symbol).png"
         
-        print("logoPath:", logoPath)
+//        print("logoPath:", logoPath)
         
         let logoURL = URL(string: logoPath)
         cell.logoView.af.setImage(withURL: logoURL!)

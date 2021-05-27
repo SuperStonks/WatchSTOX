@@ -23,45 +23,48 @@ class StockDetailsViewController: UIViewController {
     @IBOutlet weak var changePercent: UILabel!
     @IBOutlet weak var previousClose: UILabel!
     @IBOutlet weak var avgTotalVolume: UILabel!
+    
+    @IBOutlet weak var watchlistSwitch: UISwitch!
+    
+    
     var stock: [String:Any]!
+    var stockSymbol: String!
     
     let IEXApiKey: String = "Tpk_1bae23b220964b8c8042c12c06d4e84c"
     let BASE_URL: String = "https://sandbox.iexapis.com/stable/stock"
     
     func quoteDisplay(symbol: String) {
-
-        let url = URL(string: "\(BASE_URL)/\(symbol)/?token=\(self.IEXApiKey)")!
-        var request = URLRequest(url: url, cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: 10)
+        let IEXApiKey: String = "Tpk_1bae23b220964b8c8042c12c06d4e84c"
+        let BASE_URL: String = "https://sandbox.iexapis.com/stable/stock"
+        let url = URL(string: "\(BASE_URL)/\(symbol)/quote?token=\(IEXApiKey)")!
+        var request = URLRequest(url: url, cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: 20)
         request.httpMethod = "GET"
-        let session = URLSession(configuration: .default, delegate: nil, delegateQueue: OperationQueue.main)
-        let task = session.dataTask(with: request) { [self] (data, response, error) in
-           // This will run when the network request returns
-           if let error = error {
-              print(error.localizedDescription)
-           } else if let data = data {
-            
-              let dataDictionary = try! JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
-//            self.stockList.append(dataDictionary!)
-            print(dataDictionary)
-//            let query = dataDictionary!
+        print(symbol)
+        print(url)
 
-//            self.watchlist.append(symbol)
+        let session = URLSession(configuration: .default, delegate: nil, delegateQueue: OperationQueue.main)
+//        let session = URLSession()
+        print("start the task to retrieve stock data")
+        let task = session.dataTask(with: request) { [self] (data, response, error) in
+        // This will run when the network request returns
+        if let error = error {
+           print(error.localizedDescription)
+        } else if let data = data {
+         
+           let dataDictionary = try! JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
+            print(dataDictionary!)
             
-//            self.logoDisplay(symbol: symbol)
-//            self.tableView.reloadData()
+//            self.stock.append(dataDictionary!)
+            self.stock = dataDictionary!
+//            print(stock!)
            }
         }
+//        print(stock! as Any)
+        print("getting stock finished")
         task.resume()
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        // Do any additional setup after loading the view.
-        print(stock)
-//        quoteDisplay(symbol: <#T##String#>)
-//        for item in stock {
-//            print("thing: \(item)")
+    func populateDetailView() {
         var symbol = ""
         for (key, value) in stock {
                 print("\(key) -> \(value)")
@@ -71,45 +74,86 @@ class StockDetailsViewController: UIViewController {
                 tickerSymbol.text = value as! String
                 symbol = value as! String
             } else if key == "latestPrice" {
-                let latestPriceNum = value as! NSNumber
-                let latestPriceString = "\(latestPriceNum)"
-                stockPrice.text = latestPriceString
+                if (type(of: value)) == NSNull.self {
+                    stockPrice.text = "Unavailable"
+                } else {
+                    let latestPriceNum = value as! NSNumber
+                    let latestPriceString = "\(latestPriceNum)"
+                    stockPrice.text = latestPriceString
+                }
             } else if key == "high" {
-                let num = value as! NSNumber
-                let numString = "\(num)"
-                todayHigh.text = numString
+                if (type(of: value)) == NSNull.self {
+                    todayHigh.text = "Unavailable"
+                } else {
+                    let num = value as! NSNumber
+                    let numString = "\(num)"
+                    todayHigh.text = numString
+                }
             } else if key == "low" {
-                let num = value as! NSNumber
-                let numString = "\(num)"
-                todayLow.text = numString
+                if (type(of: value)) == NSNull.self {
+                    todayLow.text = "Unavailable"
+                } else {
+                    let num = value as! NSNumber
+                    let numString = "\(num)"
+                    todayLow.text = numString
+                }
             } else if key == "week52High" {
-                let num = value as! NSNumber
-                let numString = "\(num)"
-                weekFTHigh.text = numString
+                if (type(of: value)) == NSNull.self {
+                    weekFTHigh
+                        .text = "Unavailable"
+                } else {
+                    let num = value as! NSNumber
+                    let numString = "\(num)"
+                    weekFTHigh.text = numString
+                }
             } else if key == "week52Low" {
-                let num = value as! NSNumber
-                let numString = "\(num)"
-                weekFTLow.text = numString
+                if (type(of: value)) == NSNull.self {
+                    weekFTLow.text = "Unavailable"
+                } else {
+                    let num = value as! NSNumber
+                    let numString = "\(num)"
+                    weekFTLow.text = numString
+                }
             } else if key == "marketCap" {
-                let num = value as! NSNumber
-                let numString = "\(num)"
-                marketCap.text = numString
+                if (type(of: value)) == NSNull.self {
+                    marketCap.text = "Unavailable"
+                } else {
+                    let num = value as! NSNumber
+                    let numString = "\(num)"
+                    marketCap.text = numString
+                }
             } else if key == "volume" {
-                let num = value as! NSNumber
-                let numString = "\(num)"
-                volumeLabel.text = numString
+                if (type(of: value)) == NSNull.self {
+                    volumeLabel.text = "Unavailable"
+                } else {
+                    let num = value as! NSNumber
+                    let numString = "\(num)"
+                    volumeLabel.text = numString
+                }
             } else if key == "changePercent" {
-                let num = value as! NSNumber
-                let numString = "\(num)"
-                changePercent.text = numString
+                if (type(of: value)) == NSNull.self {
+                    changePercent.text = "Unavailable"
+                } else {
+                    let num = value as! NSNumber
+                    let numString = "\(num)"
+                    changePercent.text = numString
+                }
             } else if key == "previousClose" {
-                let num = value as! NSNumber
-                let numString = "\(num)"
-                previousClose.text = numString
+                if (type(of: value)) == NSNull.self {
+                    previousClose.text = "Unavailable"
+                } else {
+                    let num = value as! NSNumber
+                    let numString = "\(num)"
+                    previousClose.text = numString
+                }
             } else if key == "avgTotalVolume" {
-                let num = value as! NSNumber
-                let numString = "\(num)"
-                avgTotalVolume.text = numString
+                if (type(of: value)) == NSNull.self {
+                    avgTotalVolume.text = "Unavailable"
+                } else {
+                    let num = value as! NSNumber
+                    let numString = "\(num)"
+                    avgTotalVolume.text = numString
+                }
             }
         }
         
@@ -121,7 +165,98 @@ class StockDetailsViewController: UIViewController {
         logoView.af.setImage(withURL: logoURL!)
     }
     
-
+    func addToWatchlist() {
+        print("testing adding")
+        var test = ["hello", "this", "is", "a", "watchlist"]
+        print(test)
+        let theSymbol = "nerd"
+        test.append(theSymbol)
+        print(test)
+    }
+    
+    func removeFromWatchlist() {
+        print("removing from watch list")
+        var test = ["hello", "this", "is", "a", "watchlist"]
+        print(test)
+        let find = "is"
+        for (index, element) in test.enumerated() {
+            print("Item \(index): \(element)")
+            if (element == find) {
+                test.remove(at: index)
+                break
+            }
+        }
+        
+        print(test)
+    }
+    
+    func splitWatchlist() {
+        print("spltting watchlist for watchlist")
+        var test = ["hello", "this", "is", "a", "watchlist"]
+        for item in test {
+            print(item)
+        }
+    }
+    
+    func checkIfInWatchlist() {
+        print("checking if symbol is in watchlist")
+        var test = ["hello", "this", "is", "a", "watchlist"]
+        var isOnList = false
+        for item in test {
+            if (item == "a") {
+                print("it is in the watchlist!")
+                isOnList = true
+                break
+            }
+            else {
+                isOnList = false
+                print("it is not in the watchlist")
+            }
+        }
+        
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        // Do any additional setup after loading the view.
+        print(stock)
+//        quoteDisplay(symbol: <#T##String#>)
+//        for item in stock {
+//            print("thing: \(item)")
+        
+        print("stock symbol is :", stockSymbol)
+        
+        if stock == nil {
+            print("segue from search view")
+            do {
+                quoteDisplay(symbol: stockSymbol)
+                sleep(3)
+            }
+            addToWatchlist()
+            removeFromWatchlist()
+            splitWatchlist()
+            checkIfInWatchlist()
+//            populateDetailView()
+        } else {
+            print("segue from watchlist view")
+            populateDetailView()
+        }
+        print("hello?")
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        print("view did appear")
+        populateDetailView()
+    }
+    
+    
+    @IBAction func isOnWatchlist(_ sender: Any) {
+    }
+    
+    
     /*
     // MARK: - Navigation
 
