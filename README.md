@@ -29,17 +29,9 @@ we can add ways to show and analyze the stock market, i.e. which stock had the b
 further we can add a simulation tab which provides you with fake money and let's you invest as if it was real
 and the fake portfolio changes with real time stock exchange prices.
 
-### App Sprint-3 GIF
+### Walkthrough GIF
 
-![Walkthrough](https://media1.giphy.com/media/n43FZcxSX0qmNs2bcv/giphy.gif?cid=790b76115b7e78d5a7f10c5ad974c7b261dac9833f37a7d3&rid=giphy.gif&ct=g)
-
-### App Sprint-2 GIF
-
-* Will upload soon...
-
-### App Sprint-1 GIF
-
-![Walkthrough](https://media2.giphy.com/media/bs1bK6DyvHZeAqC4Ye/giphy.gif?cid=790b76118c669e407e8c6a3cd65a79e2708197493cd2351d&rid=giphy.gif&ct=g)
+![Walkthrough](https://media3.giphy.com/media/YvTaZQg5xT7OYBj0w6/giphy.gif?cid=790b76115071b7a93c8bdb2cda8fd0b1a5b90e67481b5a58&rid=giphy.gif&ct=g)
 
 ## Product Spec
 
@@ -49,11 +41,11 @@ and the fake portfolio changes with real time stock exchange prices.
 
 * [X] User can sign up and login 
 * [X] User stays logged in
-* [ ] User can change password
-* [ ] User can search for stocks
-* [ ] User can filter through certain stocks
-* [ ] User can add stocks to be placed on a watchlist
-* [ ] User can remove stocks from watchlist
+* [X] User can change password
+* [X] User can search for stocks
+* [X] User can filter through certain stocks
+* [X] User can add stocks to be placed on a watchlist
+* [X] User can remove stocks from watchlist
 * [X] User can look at detailed stock information
 * [X] User can change to Dark Mode
 * [X] User can disable/enable notifications
