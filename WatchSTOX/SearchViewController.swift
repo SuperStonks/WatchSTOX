@@ -12,7 +12,9 @@ import AlamofireImage
 class SearchViewController: UIViewController, UITableViewDataSource, UISearchResultsUpdating, UITableViewDelegate {
     
 
-    var data = ["AAPL", "MSFT", "TSLA", "JBLU", "AMZN", "AA", "RIOT", "AMC", "BNGO", "PLUG", "PLTR", "GE", "F", "OCGN", "FSR", "AAL"]
+//    var data = ["AAPL", "MSFT", "TSLA", "JBLU", "AMZN", "AA", "RIOT", "AMC", "BNGO", "PLUG", "PLTR", "GE", "F", "OCGN", "FSR", "AAL"]
+    var data = ["AA", "AAL", "AAPL", "AMC", "AMZN", "BAC","BNGO", "CSCO", "F", "FSR", "GE", "GME", "GOOGL", "JBLU", "KO", "MSFT", "OCGN", "PLTR", "PLUG", "RIOT", "TELL", "TSLA", "VTNR"]
+    var allData = [[String:Any]]()
     var filterData: [String]!
     var searchController: UISearchController!
     var stockList = [[String:Any]]()
@@ -22,6 +24,32 @@ class SearchViewController: UIViewController, UITableViewDataSource, UISearchRes
     @IBOutlet weak var tableView: UITableView!
 //    @IBOutlet weak var watchlistSwitch: UISwitch!
     
+    func getStockSymbols() {
+        let url = URL(string: "https://sandbox.iexapis.com/beta/ref-data/symbols?token=Tpk_1bae23b220964b8c8042c12c06d4e84c")!
+        
+        var request = URLRequest(url: url, cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: 10)
+        request.httpMethod = "GET"
+        print(url)
+
+        let session = URLSession(configuration: .default, delegate: nil, delegateQueue: OperationQueue.main)
+//        let session = URLSession()
+        print("start the task to retrieve stock data")
+        let task = session.dataTask(with: request) { [self] (data, response, error) in
+        // This will run when the network request returns
+        if let error = error {
+           print(error.localizedDescription)
+        } else if let data = data {
+         
+           let dataDictionary = try! JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
+            print(dataDictionary! as Any)
+            
+        
+           }
+        }
+        print("getting symbols finished")
+        task.resume()
+        
+    }
     
     func quoteDisplay(symbol: String) {
         let IEXApiKey: String = "Tpk_1bae23b220964b8c8042c12c06d4e84c"
@@ -59,6 +87,8 @@ class SearchViewController: UIViewController, UITableViewDataSource, UISearchRes
         tableView.dataSource = self
         tableView.delegate = self
 //        searchBar.delegate = self
+//        getStockSymbols()
+        
         filterData = data
         
         searchController = UISearchController(searchResultsController: nil)

@@ -20,9 +20,11 @@ class WatchlistViewController: UIViewController, UITableViewDataSource, UITableV
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var editButton: UIBarButtonItem!
+    @IBOutlet weak var refreshButton: UIBarButtonItem!
     
     var watchlist = [String]()
     var stockList = [[String:Any]]()
+//    var checkList = [String]()
     var stockArray = [String]()
     var userWatchlist = [String]()
     
@@ -48,9 +50,9 @@ class WatchlistViewController: UIViewController, UITableViewDataSource, UITableV
 
 //            let query = dataDictionary!
             self.watchlist.append(symbol)
-            
-//            self.logoDisplay(symbol: symbol)
             self.tableView.reloadData()
+
+//            self.logoDisplay(symbol: symbol)
            }
         }
         task.resume()
@@ -136,7 +138,20 @@ class WatchlistViewController: UIViewController, UITableViewDataSource, UITableV
             if watchlistObj != nil {
 //                self.userWatchlist = watchlistObj!
 //                self.tableView.reloadData()
+                print(watchlistObj)
+                print(watchlistObj?[0])
                 print(watchlistObj?[0]["symbolsList"])
+                print("yo")
+                print(watchlistObj?[0]["watchCount"])
+                let array = watchlistObj?[0]["symbolsList"] as! NSArray
+//                array.adding("hello")
+                print("this is symbol list:",array)
+                
+                for object in array {
+                    if let stockSym = object as? String {
+                        print(stockSym)
+                    }
+                }
 //                for item in watchlistObj {
 //
 //                    print("this is a :", item)
@@ -150,27 +165,86 @@ class WatchlistViewController: UIViewController, UITableViewDataSource, UITableV
 //        }
     }
     
+    func getUserWatchlist() {
+        let query = PFQuery(className:"Watchlist")
+        let userId = PFUser.current()?.objectId as! String
+        print("THIS IS THE USER'S ID:", userId)
+        query.whereKey("author", equalTo: userId)
+        query.findObjectsInBackground { (objects: [PFObject]?, error: Error?) in
+            if let error = error {
+                // Log details of the failure
+                print(error.localizedDescription)
+            } else if let objects = objects {
+                // The find succeeded.
+                print("Successfully retrieved objects")
+                // Do something with the found objects
+                for object in objects {
+                    print(object.objectId as Any)
+                    print(object["author"] as Any)
+                    print(object["symbolsList"] as! [String])
+                    self.watchlist = object["symbolsList"] as! [String]
+                    print("watchlist after finding object:", self.watchlist)
+                    
+                }
+            }
+        }
+
+
+//        query.getObjectInBackground() { (watchlistObject, error) in
+//            if error == nil {
+//                // Success!
+//                let array = watchlistObject?["symbolsList"] as! [String]
+//                self.watchlist = array
+//            } else {
+//                // Fail!
+//                print(error)
+//            }
+//        }
+
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.navigationItem.rightBarButtonItem = self.editButtonItem
+//        self.navigationItem.rightBarButtonItem = self.editButtonItem
         
-        // Set out default values
+        let defaults = UserDefaults.standard
+
+        var strings: [String] = defaults.stringArray(forKey: "Userdefaultlist") ?? []
+            
+            // Set out default values
 //        let defaults = UserDefaults.standard
 //        defaults.setValue(false, forKey: "Dark Mode")
 //        defaults.setValue(false, forKey: "Notification Enabled")
+//        do {
+//            getUserWatchlist()
+//        }
         
         tableView.dataSource = self
         tableView.delegate = self
         
-        self.stockArray = ["AAPL", "MSFT", "TSLA"]
-//                           , "JBLU", "AMZN", "AA", "RIOT"]
+        self.stockArray = ["AAPL", "MSFT", "TSLA", "JBLU"]
 
-        for stock in stockArray {
+//        splitWatchlist()
+//        do {
+//            getUserWatchlist()
+//        }
+//        getUserWatchlist()
+        
+
+
+        for stock in strings {
+            print("getting stock", stock)
             quoteDisplay(symbol: stock)
-//            self.tableView.reloadData()
         }
         
+//        print("hello?,",watchlist)
+        
+//        for stock in watchlist {
+//            print("getting stock", stock)
+//            quoteDisplay(symbol: stock)
+//        }
+//
 //        quoteDisplay(symbol: "AAPL")
 //        quoteDisplay(symbol: "TSLA")
 //        quoteDisplay(symbol: "MSFT")
@@ -209,31 +283,53 @@ class WatchlistViewController: UIViewController, UITableViewDataSource, UITableV
 //            }
 //
 //        }
-        splitWatchlist()
+//        for stock in watchlist {
+//            print("getting stock", stock)
+//        }
+//        for stock in watchlist {
+//            print("getting stock", stock)
+//            quoteDisplay(symbol: stock)
+//        }
+//        self.tableView.reloadData()
 
+//        for stock in watchlist {
+//            quoteDisplay(symbol: stock)
+////            self.tableView.reloadData()
+//        }
+//        getUserWatchlist()
+
+        print("print the use defaults")
+        let defaults = UserDefaults.standard
+        
+        var strings: [String] = defaults.stringArray(forKey: "Userdefaultlist") ?? []
+        print(strings)
+        
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        tableView.reloadData()
-        
+        self.tableView.reloadData()
+
         let defaults = UserDefaults.standard
 
         if defaults.bool(forKey: "Dark Mode") == true {
             self.view.backgroundColor = .darkGray
             self.tableView.backgroundColor =
                 .darkGray
-            
-            
+
+
         }
         else {
             self.view.backgroundColor = .white
             self.tableView.backgroundColor =
                 .white
         }
-        print(stockList)
+
     }
+    
+    
 
     // MARK: - Table view data source
     
@@ -249,6 +345,7 @@ class WatchlistViewController: UIViewController, UITableViewDataSource, UITableV
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
+        print("hello", stockList.count)
         let stock = stockList[indexPath.row]
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "WatchlistCell", for: indexPath) as! WatchlistCell
@@ -437,4 +534,17 @@ class WatchlistViewController: UIViewController, UITableViewDataSource, UITableV
         
         tableView.deselectRow(at: indexPath, animated: true)
     }
+    
+    @IBAction func refreshWatchlist(_ sender: Any) {
+        let defaults = UserDefaults.standard
+        
+        var strings: [String] = defaults.stringArray(forKey: "Userdefaultlist") ?? []
+        
+        self.watchlist = [String]()
+        self.stockList = [[String:Any]]()
+        for stock in strings {
+            quoteDisplay(symbol: stock)
+        }
+    }
+    
 }

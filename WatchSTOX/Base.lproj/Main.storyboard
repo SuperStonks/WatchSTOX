@@ -237,7 +237,7 @@
         <!--SearchViewController-->
         <scene sceneID="LNV-tJ-EUG">
             <objects>
-                <viewController title="SearchViewController" id="jrA-as-1Nj" customClass="SearchViewController" customModule="WatchSTOX" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="SearchViewController" interfaceStyle="light" id="jrA-as-1Nj" customClass="SearchViewController" customModule="WatchSTOX" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="WBv-9u-G9E">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -384,10 +384,14 @@
                                 <action selector="onLogoutButton:" destination="BAj-HJ-Tdk" id="YdH-if-Vuf"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Edit" id="QOG-Xl-4TC"/>
+                        <barButtonItem key="rightBarButtonItem" title="Refresh" id="QOG-Xl-4TC">
+                            <connections>
+                                <action selector="refreshWatchlist:" destination="BAj-HJ-Tdk" id="mmV-pO-D0v"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="editButton" destination="QOG-Xl-4TC" id="OMh-0o-JXq"/>
+                        <outlet property="refreshButton" destination="QOG-Xl-4TC" id="3Wl-GD-kS2"/>
                         <outlet property="tableView" destination="x4f-9n-dBY" id="gYf-qv-7Dn"/>
                     </connections>
                 </viewController>
@@ -475,6 +479,7 @@
         <!--StockDetailsViewController-->
         <scene sceneID="8K6-x4-fBE">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6uO-l7-MvU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <viewController title="StockDetailsViewController" id="Wj6-qx-dn2" customClass="StockDetailsViewController" customModule="WatchSTOX" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="pgN-Yg-fWe">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
@@ -521,13 +526,6 @@
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Symbol" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wTi-xS-scj">
                                 <rect key="frame" x="51" y="375" width="58" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Today's High" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pG0-eV-dff">
-                                <rect key="frame" x="51" y="412" width="99" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -659,13 +657,20 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dSg-Vp-wvT">
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="dSg-Vp-wvT">
                                 <rect key="frame" x="221" y="751" width="49" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <connections>
                                     <action selector="isOnWatchlist:" destination="Wj6-qx-dn2" eventType="valueChanged" id="ctd-IH-6cb"/>
                                 </connections>
                             </switch>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Today's High" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pG0-eV-dff">
+                                <rect key="frame" x="51" y="412" width="99" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="fmK-9G-rIc"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -673,22 +678,34 @@
                     <navigationItem key="navigationItem" id="5ZY-KV-Cif"/>
                     <connections>
                         <outlet property="avgTotalVolume" destination="MUj-6Z-jk9" id="WBJ-Mm-wwu"/>
+                        <outlet property="avgTotalVolumeLabel" destination="9rU-O7-2lr" id="rRM-OT-g7a"/>
                         <outlet property="changePercent" destination="HUP-ge-l8W" id="iCw-tu-7CP"/>
+                        <outlet property="changePercentLabel" destination="ZgE-qp-B6K" id="J02-Xp-biH"/>
                         <outlet property="companyName" destination="cSo-xY-PFw" id="HtC-9e-7gj"/>
+                        <outlet property="companyNameLabel" destination="1q7-Te-73r" id="8C2-VT-KYk"/>
                         <outlet property="logoView" destination="1eg-HB-IrT" id="NE9-yD-gbA"/>
                         <outlet property="marketCap" destination="Dar-K8-zHP" id="NCT-jw-jiA"/>
+                        <outlet property="marketCapLabel" destination="3IW-oH-GKA" id="Rgt-wd-ZJV"/>
                         <outlet property="previousClose" destination="dIU-PF-VGD" id="wWn-gG-Z7D"/>
+                        <outlet property="previousCloseLabel" destination="sev-KU-Ueg" id="onv-83-8f2"/>
                         <outlet property="stockPrice" destination="pya-UB-G1k" id="KBK-8O-0MR"/>
+                        <outlet property="stockPriceLabel" destination="OLj-gf-LuZ" id="b71-TV-bP8"/>
                         <outlet property="tickerSymbol" destination="NX3-Ju-dIG" id="UHQ-bX-aXj"/>
-                        <outlet property="todayHigh" destination="fdj-lw-fJB" id="XrT-2r-9E7"/>
+                        <outlet property="tickerSymbolLabel" destination="wTi-xS-scj" id="PfM-Tg-64X"/>
+                        <outlet property="todayHigh" destination="fdj-lw-fJB" id="EIB-U8-GJh"/>
+                        <outlet property="todayHighLabel" destination="pG0-eV-dff" id="Ivw-4O-SjE"/>
                         <outlet property="todayLow" destination="doE-Wl-kqE" id="Gry-3g-mpw"/>
-                        <outlet property="volumeLabel" destination="d6X-gw-h9d" id="Yb4-ie-oyW"/>
+                        <outlet property="todayLowLabel" destination="fLp-GZ-pdb" id="DaF-Cm-qyW"/>
+                        <outlet property="volumeLabel" destination="d6X-gw-h9d" id="MVx-hK-HMy"/>
+                        <outlet property="volumeLabelLabel" destination="QUG-MT-PT8" id="MEx-Jx-Cvl"/>
+                        <outlet property="watchLabel" destination="FfT-e2-jpF" id="dvT-1m-Srh"/>
                         <outlet property="watchlistSwitch" destination="dSg-Vp-wvT" id="9rv-gP-IGh"/>
                         <outlet property="weekFTHigh" destination="3A4-mt-4Or" id="fGx-mU-4ES"/>
+                        <outlet property="weekFTHighLabel" destination="MCi-aY-Kqp" id="4Aa-Df-VCR"/>
                         <outlet property="weekFTLow" destination="SmM-zH-1q1" id="NLH-l1-BqE"/>
+                        <outlet property="weekFTLowLabel" destination="4b4-lz-DlH" id="I9D-6Z-Dec"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="6uO-l7-MvU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-772.46376811594212" y="3193.5267857142858"/>
         </scene>
@@ -712,7 +729,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="TFc-RU-QdO"/>
+        <segue reference="dhr-in-Wgq"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="eye" catalog="system" width="128" height="81"/>

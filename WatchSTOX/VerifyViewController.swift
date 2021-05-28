@@ -65,12 +65,18 @@ class VerifyViewController: UIViewController {
 //                }
 //            }
             
-            do {
-                try PFUser.requestPasswordReset(forEmail: email)
-            }
-            catch _ {
-                print("Error requesting password reset.")
-            }
+//            do {
+//                try PFUser.requestPasswordReset(forEmail: email)
+            PFUser.requestPasswordResetForEmail(inBackground: email)
+            
+            let alert = UIAlertController(title: "Success", message: "Please check your inbox for more info at \(email)" , preferredStyle: UIAlertController.Style.alert)
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+
+//            }
+//            catch _ {
+//                print("Error requesting password reset.")
+//            }
         }
         else {
             let alert = UIAlertController(title: "Error", message: "Passwords don't match. Try Again", preferredStyle: UIAlertController.Style.alert)

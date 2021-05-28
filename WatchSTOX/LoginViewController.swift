@@ -24,6 +24,8 @@ class LoginViewController: UIViewController {
         let defaults = UserDefaults.standard
         defaults.setValue(false, forKey: "Dark Mode")
         defaults.setValue(false, forKey: "Notification Enabled")
+        let array = [String]()
+        defaults.setValue(array, forKey: "Userdefaultlist")
         
         // Do any additional setup after loading the view.
     }
@@ -56,6 +58,13 @@ class LoginViewController: UIViewController {
         
         PFUser.logInWithUsername(inBackground: username, password: password) { (user, error) in
             if user != nil {
+                if username == "watchstox" {
+                    let defaults = UserDefaults.standard
+                    
+                    var arr = ["AAPL", "AMC", "GME", "GOOGL"]
+                    defaults.setValue(arr, forKey: "Userdefaultlist")
+                }
+                
                 self.performSegue(withIdentifier: "loginSegue", sender: nil)
             }
             else{
@@ -72,8 +81,8 @@ class LoginViewController: UIViewController {
         user.signUpInBackground { (success, error) in
             if success {
                 let watchlist = PFObject(className: "Watchlist")
-                watchlist["symbolsList"] = [String]()
-                watchlist["author"] = PFUser.current()!
+                watchlist["symbolsList"] = ["AAPL"]
+                watchlist["author"] = PFUser.current()?.objectId as! String
                 watchlist["watchCount"] = 0
                 
                 watchlist.saveInBackground() { (succes, error) in
