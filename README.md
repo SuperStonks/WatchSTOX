@@ -33,6 +33,10 @@ and the fake portfolio changes with real time stock exchange prices.
 
 ![Walkthrough](https://media3.giphy.com/media/YvTaZQg5xT7OYBj0w6/giphy.gif?cid=790b76115071b7a93c8bdb2cda8fd0b1a5b90e67481b5a58&rid=giphy.gif&ct=g)
 
+### A Narrated Version (by Mike Neri)
+
+![Narration](https://www.youtube.com/watch?v=6bTZWlYjhJg&feature=youtu.be)
+
 ## Product Spec
 
 ### 1. User Stories (Required and Optional)
